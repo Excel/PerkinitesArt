@@ -33,7 +33,6 @@
       public static JPanel mainPanel;
       public static JPanel charPanel = new JPanel();
       public static JPanel abilityPanel = new JPanel();
-      public static JComboBox boxChars;
       public static JComboBox boxAbilities;
       
       public static Border blackline = BorderFactory.createLineBorder(Color.black);
@@ -105,28 +104,39 @@
       }
       
       public static void createCharPanel(){
+      //CHAR Panel with have a list panel, an edit panel, and a sub-edit panel
          charPanel.removeAll();
          charPanel.setLayout(new BorderLayout());
         // charPanel.setBorder(blackline);
         
-        
+         JPanel listPanel = new JPanel();
+         listPanel.setBorder(blackline);
+         listPanel.setLayout(new BorderLayout());
          DefaultListModel model = new DefaultListModel();
          final JList list = new JList(model);
+         
       	
          for(int i = 0; i < chars.length; i++){
             model.add(i, chars[i]);
          }
-         list.setBorder(blackline);
+         //list.setBorder(blackline);
          //set up drag and drop here
-         list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
-         list.setTransferHandler(new ArrayListTransferHandler());
-         list.setDragEnabled(true);
+         // list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+         // list.setTransferHandler(new ArrayListTransferHandler());
+         // list.setDragEnabled(true);
          
-         charPanel.add(list, BorderLayout.LINE_START);
-      
+         listPanel.add(list, BorderLayout.LINE_START);
+         listPanel.add(new JLabel("List of Perkinites :)"), BorderLayout.PAGE_START);
+         listPanel.add(list, BorderLayout.CENTER);
+         
+         charPanel.add(listPanel, BorderLayout.LINE_START);
+         JPanel bigEditPanel = new JPanel();
+         bigEditPanel.setLayout(new BorderLayout());
+         
+         bigEditPanel.setBorder(blackline);
+         
          JPanel editPanel = new JPanel();
-         editPanel.setLayout(new GridLayout(16, 1));
-         editPanel.setBorder(blackline);
+         editPanel.setLayout(new GridLayout(8, 1, 1, 0));
          
       	//find the correct entry in the array for that particular char
       	//When you drag and drop, it doesn't re-organize the array list.
@@ -136,22 +146,32 @@
          
             if(charData.get(i).name.equals(selectedCharacter)){
                cData = charData.get(i);
+               list.setSelectedIndex(i);
                break;
             }
          }
          
       	//Fields and stuff are here.
-      	
-      	//LOAD ICON HERE
-         //JLabel faceIcon =  new JLabel(new ImageIcon("SOME URL NAME")); 
-         JTextField nameField = new JTextField(cData.name,20);
-         JTextField idField = new JTextField(cData.id,20);
-         JTextField spriteField = new JTextField(cData.sprite,20);
-         JTextField healthField = new JTextField(cData.health+"",20);
-         JTextField defenseField = new JTextField(cData.defense+"",20);
-         JTextField speedField = new JTextField(cData.speed+"",20);
-         JTextField weaponField = new JTextField(cData.weapon,20);
+            
+         JLabel faceIcon = new JLabel(createFaceIcon(cData.id));
+         JTextField nameField = new JTextField(cData.name,30);
+         JTextField idField = new JTextField(cData.id,30);
+         JTextField spriteField = new JTextField(cData.sprite,30);
+         JTextField healthField = new JTextField(cData.health+"",30);
+         JTextField defenseField = new JTextField(cData.defense+"",30);
+         JTextField speedField = new JTextField(cData.speed+"",30);
+         JTextField weaponField = new JTextField(cData.weapon,30);
          JButton applyButton = new JButton("Apply Changes");
+         applyButton.addActionListener(
+               new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                  
+                  }
+               });  
+      	
+      	
+      	
+         bigEditPanel.add(faceIcon, BorderLayout.PAGE_START);
          editPanel.add(new JLabel("Name:"));
          editPanel.add(nameField);
          editPanel.add(new JLabel("ID:"));
@@ -166,9 +186,10 @@
          editPanel.add(speedField);
          editPanel.add(new JLabel("Weapon:"));
          editPanel.add(weaponField);
-         editPanel.add(applyButton);
+         bigEditPanel.add(applyButton, BorderLayout.PAGE_END);
          
-         charPanel.add(editPanel, BorderLayout.CENTER);
+         bigEditPanel.add(editPanel, BorderLayout.CENTER);
+         charPanel.add(bigEditPanel, BorderLayout.CENTER);
          
          MouseListener mouseListener = 
             new MouseAdapter(){
@@ -186,13 +207,111 @@
          charPanel.revalidate();
          charPanel.repaint();
       }
+      public static ImageIcon createFaceIcon(String id){
+         ImageIcon image;
+         String filename = "";
+         File cwd = new File("\\..");
+         try{
+            filename = cwd.getCanonicalPath() + "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons\\Face Icon - " + id + ".png";
+         }
+            catch (Exception e){
+               e.printStackTrace();
+              
+            }
+         image = new ImageIcon(filename);
+         if(image.getIconWidth() == -1){
+            try{
+               filename = cwd.getCanonicalPath() + "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons\\Icon - Access Denied.png";  
+            }
+               catch (Exception e){
+                  e.printStackTrace();
+               }
+            image = new ImageIcon(filename);
+         }
+         return new ImageIcon(filename);
+      }
+      public static ImageIcon createAbilityIcon(String id){
+         ImageIcon image;
+         String filename = "";
+         File cwd = new File("\\..");
+         try{
+            filename = cwd.getCanonicalPath() + "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons\\Icon - " + id + ".png";
+         }
+            catch (Exception e){
+               e.printStackTrace();
+              
+            }
+         image = new ImageIcon(filename);
+         if(image.getIconWidth() == -1){
+            try{
+               filename = cwd.getCanonicalPath() + "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons\\Icon - Access Denied.png";  
+            }
+               catch (Exception e){
+                  e.printStackTrace();
+               }
+            image = new ImageIcon(filename);
+         }
+         return new ImageIcon(filename);
+      
+      }
       public static void createAbilityPanel(){
          abilityPanel.removeAll();
          abilityPanel.setBorder(blackline);
-         abilityPanel.add(boxAbilities);
-      
+         abilityPanel.setLayout(new BorderLayout());
+         
+         CharacterData cData = charData.get(0);
+         for(int i = 0; i < charData.size(); i++){
+            if(charData.get(i).name.equals(selectedCharacter)){
+               cData = charData.get(i);
+               break;
+            }
+         }
+         
+         
+         DnDTabbedPane sub = new DnDTabbedPane();
+         sub.setFont( new Font( "Dialog", Font.BOLD, 14 ) );
+         sub.setTabLayoutPolicy(JTabbedPane.SCROLL_TAB_LAYOUT);
+         for(int i = 0; i < cData.abilities.size(); i++){
+            AbilityData aData = cData.abilities.get(i);
+            sub.addTab(aData.name, createEditAbilityPanel(aData));
+         
+         }
+         abilityPanel.add(sub, BorderLayout.CENTER);
          abilityPanel.revalidate();
          abilityPanel.repaint();
+      }
+      public static JPanel createEditAbilityPanel(AbilityData aData){
+         JPanel editAbilityPanel = new JPanel();
+         editAbilityPanel.setLayout(new BorderLayout());
+         
+         JPanel editPanel = new JPanel();
+         editPanel.setLayout(new GridLayout(8, 2, 1, 0));
+         
+      	//Fields and stuff are here.
+      	
+      
+         JLabel faceIcon = new JLabel(createAbilityIcon(aData.name));
+         JTextField nameField = new JTextField(aData.name,20);
+             	
+         editAbilityPanel.add(faceIcon, BorderLayout.PAGE_START);
+         editPanel.add(new JLabel("Name:"));
+         editPanel.add(nameField);
+      
+      	
+      	
+         JButton applyButton = new JButton("Apply Changes");
+         applyButton.addActionListener(
+               new ActionListener() {
+                  public void actionPerformed(ActionEvent e) {
+                  
+                  }
+               });  
+         editAbilityPanel.add(editPanel, BorderLayout.CENTER);
+         editAbilityPanel.add(applyButton, BorderLayout.PAGE_END);
+      	
+      
+      
+         return editAbilityPanel;
       }
    	
       public static void showCharacter(String name) {
@@ -208,11 +327,6 @@
                break;
             }
          }
-         //load the ability names into the combobox
-         for(int i = 0; i < cData.abilities.size(); i++){
-            abilityNames.add(cData.abilities.get(i).name);
-         }
-         boxAbilities = new JComboBox(abilityNames.toArray());
          
       	//reload the char/ability panels
          createCharPanel();
@@ -220,9 +334,6 @@
          
       }
    	
-      // public static void changeCharacter() {
-         // String petName = (String)boxChars.getSelectedItem();
-      // }
       
       public static void save() {
       	
