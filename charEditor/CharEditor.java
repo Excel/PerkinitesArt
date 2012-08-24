@@ -28,6 +28,7 @@
       public static String path;
    
       public static String[] chars;
+      
       public static ArrayList<CharacterData> charData = new ArrayList<CharacterData>();
       public static String selectedCharacter = "";   
       public static JPanel mainPanel;
@@ -37,16 +38,31 @@
       
       public static Border blackline = BorderFactory.createLineBorder(Color.black);
       
+      public static ActionListener abilityListener;
    
       public static void main(String[] args) throws Exception {
       
-         File cwd = new File("\\..");
-         path = cwd.getCanonicalPath() + "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\data\\characters\\";
-         //path = cwd.getCanonicalPath() + "\\..\\..\\p\\assets\\data\\characters\\";
+         AbilityData.init();
       
+         File cwd = new File(".");
+      	
+         boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\data\\characters\\") ||
+            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\characters\\") ||
+            				tryPath(cwd, "\\assets\\data\\characters\\");
+      	
          loadCharacterNames();
-      
+      	
          showGUI();
+      }
+   	
+   	/**
+   	 * returns false if path passed in doesn't exist
+   	 */
+      public static boolean tryPath(File cwd, String p) throws Exception {
+         path = cwd.getCanonicalPath() + p;
+         File f = new File(path);
+      	
+         return f.exists();
       }
    
       public static void loadCharacterNames() throws Exception {
@@ -112,6 +128,7 @@
          JPanel listPanel = new JPanel();
          listPanel.setBorder(blackline);
          listPanel.setLayout(new BorderLayout());
+      	
          DefaultListModel model = new DefaultListModel();
          final JList list = new JList(model);
          
@@ -120,6 +137,15 @@
             model.add(i, chars[i]);
          }
          //list.setBorder(blackline);
+      	      	
+      	// ability combobox listener
+         ActionListener abilityListener = 
+            new ActionListener(){
+               public void actionPerformed(ActionEvent e){
+                  createAbilityPanel();
+               }
+            };
+      	
          //set up drag and drop here
          // list.setSelectionMode(ListSelectionModel.SINGLE_INTERVAL_SELECTION);
          // list.setTransferHandler(new ArrayListTransferHandler());
@@ -152,26 +178,26 @@
          }
          
       	//Fields and stuff are here.
-            
+      	
          JLabel faceIcon = new JLabel(createFaceIcon(cData.id));
-         JTextField nameField = new JTextField(cData.name,30);
-         JTextField idField = new JTextField(cData.id,30);
-         JTextField spriteField = new JTextField(cData.sprite,30);
-         JTextField healthField = new JTextField(cData.health+"",30);
-         JTextField defenseField = new JTextField(cData.defense+"",30);
-         JTextField speedField = new JTextField(cData.speed+"",30);
-         JTextField weaponField = new JTextField(cData.weapon,30);
-         JButton applyButton = new JButton("Apply Changes");
+         
+         bigEditPanel.add(faceIcon, BorderLayout.PAGE_START);
+      	
+         JTextField nameField = new JTextField(cData.name,20);
+         JTextField idField = new JTextField(cData.id,20);
+         JTextField spriteField = new JTextField(cData.sprite,20);
+         JTextField healthField = new JTextField(cData.health+"",20);
+         JTextField defenseField = new JTextField(cData.defense+"",20);
+         JTextField speedField = new JTextField(cData.speed+"",20);
+         JTextField weaponField = new JTextField(cData.weapon,20);
+         JButton applyButton = new JButton("Save Changes");
          applyButton.addActionListener(
                new ActionListener() {
                   public void actionPerformed(ActionEvent e) {
                   
                   }
-               });  
+               });
       	
-      	
-      	
-         bigEditPanel.add(faceIcon, BorderLayout.PAGE_START);
          editPanel.add(new JLabel("Name:"));
          editPanel.add(nameField);
          editPanel.add(new JLabel("ID:"));
@@ -203,10 +229,10 @@
             
          list.addMouseListener(mouseListener);
       
-      
          charPanel.revalidate();
          charPanel.repaint();
       }
+   	
       public static ImageIcon createFaceIcon(String id){
          ImageIcon image;
          String filename = "";
@@ -327,6 +353,19 @@
                break;
             }
          }
+         //load the ability names into the combobox
+         for(int i = 0; i < cData.abilities.size(); i++){
+            abilityNames.add(cData.abilities.get(i).name);
+         }
+      	
+         if (boxAbilities != null) {
+         	// delete previous one
+            boxAbilities.removeActionListener(abilityListener);
+         }
+      	
+         boxAbilities = new JComboBox(abilityNames.toArray());
+         boxAbilities.addActionListener(abilityListener);
+        	// TODO: probably have to remove and readd to panel
          
       	//reload the char/ability panels
          createCharPanel();
@@ -334,7 +373,6 @@
          
       }
    	
-      
       public static void save() {
       	
       }
