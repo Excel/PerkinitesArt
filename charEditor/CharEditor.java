@@ -44,7 +44,7 @@
       
          AbilityData.init();
       
-         File cwd = new File(".");
+         File cwd = new File("\\..");
       	
          boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\data\\characters\\") ||
             				tryPath(cwd, "\\..\\..\\p\\assets\\data\\characters\\") ||
