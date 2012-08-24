@@ -13,6 +13,19 @@
    
       public int range;
       public int cd;
+      
+   	public int angle;
+   	
+   	public boolean goToCastPoint;
+   	
+   	public int radius;
+   	
+   	public int width;
+   	
+   	public int width;
+   	public int penetrates;
+   	public int speed;
+   	public boolean stopAtEnemy;
    
       public static Map<String, Map<String, FieldTypes>> fields;
    
