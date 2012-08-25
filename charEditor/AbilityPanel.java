@@ -15,7 +15,6 @@
   
    public class AbilityPanel extends JPanel{
    
-   
       public static ArrayList<AbilityData> abilityData;
       public static Border blackline = BorderFactory.createLineBorder(Color.black);
       
@@ -66,7 +65,7 @@
             setLayout(new BorderLayout());
          
             JPanel editPanel = new JPanel();
-            editPanel.setLayout(new GridLayout(9, 2, 1, 0));
+            editPanel.setLayout(new GridLayout(8, 2));
          
          //Fields and stuff are here.
          
@@ -75,6 +74,10 @@
             ArrayList<String> attacks = new ArrayList<String>(aData.fields.keySet());
             typeBox = new JComboBox(attacks.toArray());
             typeBox.setSelectedIndex(attacks.indexOf(aData.type));
+            ChangeAddListener cal = new ChangeAddListener();
+            cal.setAbilityData(aData);
+            typeBox.addActionListener(cal);
+            
             iconField = new JTextField(aData.icon, 30);
             descriptionArea = new JTextArea(aData.description);
             descriptionArea.setLineWrap(true);
@@ -87,6 +90,10 @@
             add(faceIcon, BorderLayout.PAGE_START);
             editPanel.add(new JLabel("Name:"));
             editPanel.add(nameField);
+            
+            // QuickUpdateListener qul = new QuickUpdateListener();
+            // nameField.addActionListener(qul);
+            
             editPanel.add(new JLabel("Type of Attack:"));
             editPanel.add(typeBox);
             editPanel.add(new JLabel("Icon:"));
@@ -103,34 +110,62 @@
             editPanel.add(new JLabel("Cooldown:"));
             editPanel.add(cdField);
          
+            addPanel = new JPanel();
+            add(addPanel, BorderLayout.PAGE_END);
             updateAddPanel(aData);
             add(editPanel, BorderLayout.CENTER);
-            add(addPanel, BorderLayout.PAGE_END);
                        
          
          }
          
+         public class ChangeAddListener implements ActionListener{
+            private AbilityData aData;
+            
+            public void setAbilityData(AbilityData a){
+               aData = a;
+            }
+            public void actionPerformed(ActionEvent e){
+               JComboBox typeBox = (JComboBox)e.getSource();
+               String type = (String)typeBox.getSelectedItem();
+               aData.type = type;
+               updateAddPanel(aData);
+            }
+         }
+         // public class QuickUpdateListener implements ActionListener{
+         // 
+            // public void actionPerformed(ActionEvent e){
+               // sub.setTitleAt();
+            //    
+            // }
+         // }
          public void updateAddPanel(AbilityData aData){
+         
+            remove(addPanel);
             addPanel = new JPanel();
-            addPanel.setLayout(new GridLayout(2, 4));
+          
             addPanel.setBorder(blackline);
             
             addLabels = new ArrayList<JLabel>();
             addFields = new ArrayList<JTextField>();
             
-            Map<String, AbilityData.FieldTypes> map = aData.fields.get(aData.type);
+            Map<String, AbilityData.FieldTypes> map = AbilityData.fields.get(aData.type);
          
             Set fields = map.keySet();
             Iterator it = fields.iterator();
+            addPanel.setLayout(new GridLayout(fields.size(), 2));
             while(it.hasNext()){
-               JLabel label = new JLabel((String)it.next());
+               String key = (String)it.next();
+               JLabel label = new JLabel(key);
                addLabels.add(label);
                addPanel.add(label);
-               JTextField field = new JTextField("");
+               JTextField field = new JTextField(aData.actualFields.get(key));
                addFields.add(field);
                addPanel.add(field);
             }
-         
+            
+            add(addPanel, BorderLayout.PAGE_END);  
+            revalidate();
+            repaint();
          }
       }
    
@@ -175,7 +210,37 @@
             aData.dmgRatio = editPanel.dmgRatioField.getText();
             aData.range = Integer.parseInt(editPanel.rangeField.getText());
             aData.cd = Integer.parseInt(editPanel.cdField.getText());
-         
+            ArrayList<String> attacks = new ArrayList<String>(aData.fields.keySet());
+            aData.type = attacks.get(editPanel.typeBox.getSelectedIndex());
+            
+           
+            for(int j = 0; j < editPanel.addLabels.size(); j++){
+            
+               JLabel addLabel = editPanel.addLabels.get(j);
+               JTextField addField = editPanel.addFields.get(j);
+               Map<String, AbilityData.FieldTypes> f = aData.fields.get(aData.type);
+               AbilityData.FieldTypes value = f.get(addLabel.getText());
+               if(value == AbilityData.FieldTypes.INT || value == AbilityData.FieldTypes.NUMBER){
+                  if(! (!addField.getText().matches("^\\d*$") || addField.getText().length() == 0)){
+                     aData.actualFields.put(editPanel.addLabels.get(j).getText(), 
+                        editPanel.addFields.get(j).getText()); 
+                  }
+               }
+               else if(value == AbilityData.FieldTypes.BOOLEAN){
+                  if(addField.getText().matches("true") || addField.getText().matches("false") ){
+                     aData.actualFields.put(editPanel.addLabels.get(j).getText(), 
+                        editPanel.addFields.get(j).getText()); 
+                  }
+               }
+               else if(value == AbilityData.FieldTypes.STRING){
+                  aData.actualFields.put(editPanel.addLabels.get(j).getText(), 
+                        editPanel.addFields.get(j).getText());   
+               }
+                    
+                  
+            
+                
+            }
          }
       }
    

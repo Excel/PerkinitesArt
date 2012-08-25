@@ -18,10 +18,10 @@
       public static JPanel listPanel, bigEditPanel, editPanel;
       public static Border blackline = BorderFactory.createLineBorder(Color.black);
       public static ArrayList<CharacterData> charData;
-      public static String[] chars;
       
       public static JTextField nameField, idField, spriteField,
-       healthField, defenseField, speedField, weaponField;
+       healthField, defenseField, speedField, weaponField, 
+       healthlevelField, attacklevelField, speedlevelField;
    
       
       public static String path = "";
@@ -30,27 +30,25 @@
       
    
       
-      public CharPanel(ArrayList<CharacterData> cData, String[] cs){
+      public CharPanel(ArrayList<CharacterData> cData){
          super();
          charData = cData;
-         chars = cs;
       }
-      public void updateCharPanel(String selectedCharacter){
+      public void updateCharPanel(int index){
       //CHAR Panel with have a list panel, an edit panel, and a sub-edit panel
          removeAll();
          setLayout(new BorderLayout());
-        //setBorder(blackline);
         
       
          bigEditPanel = new JPanel();
          bigEditPanel.setLayout(new BorderLayout());
          
-         bigEditPanel.setBorder(blackline);
+         //bigEditPanel.setBorder(blackline);
          
          editPanel = new JPanel();
-         editPanel.setLayout(new GridLayout(8, 1, 1, 0));
+         editPanel.setLayout(new GridLayout(16, 1, 1, 0));
          
-         selectedCharIndex = Arrays.asList(chars).indexOf(selectedCharacter);
+         selectedCharIndex = index;
          CharacterData cData = charData.get(selectedCharIndex);
         
                 
@@ -66,6 +64,9 @@
          healthField = new JTextField(cData.health+"",20);
          defenseField = new JTextField(cData.defense+"",20);
          speedField = new JTextField(cData.speed+"",20);
+         healthlevelField = new JTextField(cData.levelBonuses.health+"",20);
+         attacklevelField = new JTextField(cData.levelBonuses.attack+"",20);
+         speedlevelField = new JTextField(cData.levelBonuses.speed+"",20);
          weaponField = new JTextField(cData.weapon,20);
       
          editPanel.add(new JLabel("Name:"));
@@ -80,6 +81,12 @@
          editPanel.add(defenseField);
          editPanel.add(new JLabel("Speed:"));
          editPanel.add(speedField);
+         editPanel.add(new JLabel("Health per Level:"));
+         editPanel.add(healthlevelField);
+         editPanel.add(new JLabel("Attack per Level:"));
+         editPanel.add(attacklevelField);
+         editPanel.add(new JLabel("Speed per Level:"));
+         editPanel.add(speedlevelField);
          editPanel.add(new JLabel("Weapon:"));
          editPanel.add(weaponField);
          
@@ -122,13 +129,42 @@
       
       public void updateCharacter(){
          CharacterData cData = charData.get(selectedCharIndex);
-         cData.name = nameField.getText();
-         cData.id =   idField.getText();
-         cData.sprite = spriteField.getText();
-         cData.health = Integer.parseInt(healthField.getText());
-         cData.defense= Integer.parseInt(defenseField.getText());
-         cData.speed = Integer.parseInt(speedField.getText());
-         cData.weapon = weaponField.getText();
+         if(nameField.getText().matches(".*\\w.*")){ 
+            cData.name = nameField.getText();
+         }
+         if(idField.getText().matches(".*\\w.*")){
+            cData.id =   idField.getText();
+         }
+         if(spriteField.getText().matches(".*\\w.*")){
+            cData.sprite = spriteField.getText();
+         }
+         if(healthField.getText().matches("^\\d*$")){
+            cData.health = Integer.parseInt(healthField.getText());
+         }
+         if(defenseField.getText().matches("^\\d*$")){
+            cData.defense= Integer.parseInt(defenseField.getText());
+         }
+         if(speedField.getText().matches("^\\d*$")){
+            cData.speed = Integer.parseInt(speedField.getText());
+         }
+         if(healthlevelField.getText().matches("^\\d*$")){
+            cData.levelBonuses.health = Integer.parseInt(healthlevelField.getText());
+         }
+         if(attacklevelField.getText().matches("^\\d*$")){
+            cData.levelBonuses.attack = Integer.parseInt(attacklevelField.getText());
+         }
+         if(speedlevelField.getText().matches("^\\d*$")){
+            cData.levelBonuses.speed = Integer.parseInt(speedlevelField.getText());
+         }
+         if(weaponField.getText().matches(".*\\w.*")){
+            cData.weapon = weaponField.getText();
+         }   
+      
+      
+      
+      
+      
+      
       }
       	/**
    	 * returns false if path passed in doesn't exist

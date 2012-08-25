@@ -10,6 +10,8 @@
       public int health;
       public int defense;
       public int speed;
+   	
+      public LevelBonus levelBonuses;
    
       public String weapon;
    
@@ -17,5 +19,13 @@
       
       public CharacterData(String charName) {
       
+      }
+      
+      public class LevelBonus {
+         public int health, attack, speed;
+      
+         public LevelBonus(){
+         
+         }
       }
    }
