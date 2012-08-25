@@ -1,5 +1,7 @@
    import dbData.*;
    
+   import java.lang.reflect.Field;
+         	
    import java.util.*;
    
    import javax.swing.*;
@@ -174,10 +176,10 @@
                addFields.add(field);
                editPanel.add(field);
             }
-            selfbuffButton.addActionListener(new BuffListener("self", aData));
-            teambuffButton.addActionListener(new BuffListener("team", aData));
-            alliesbuffButton.addActionListener(new BuffListener("allies", aData));
-            enemiesbuffButton.addActionListener(new BuffListener("enemies", aData));
+            selfbuffButton.addActionListener(new BuffListener("Self", aData));
+            teambuffButton.addActionListener(new BuffListener("Team", aData));
+            alliesbuffButton.addActionListener(new BuffListener("Allies", aData));
+            enemiesbuffButton.addActionListener(new BuffListener("Enemies", aData));
          	
             editPanel.add(selfbuffButton);
             editPanel.add(teambuffButton);
@@ -197,7 +199,48 @@
             aData = ad;
          }
          public void actionPerformed(ActionEvent e){
-                   
+            JPanel myPanel = new JPanel();
+            myPanel.setLayout(new GridLayout(16, 4));
+            ArrayList<JTextField> textfields = new ArrayList<JTextField>();
+         
+            // for(int i = 0; i < Buff.statTypes.length; i++){
+               // for(int j = 0; j < Buff.changeTypes.length; j++){
+                  // myPanel.add(new JLabel(Buff.statTypes[i] + " " + Buff.changeTypes[i]));
+                  // JTextField field = new JTextField();
+                  // textfields.add(field);
+               // }
+            // 
+            // }
+            try{
+               System.out.println("okay");
+               Class c = aData.buffs.self.getClass();
+               for(Field f : aData.buffs.self.getClass().getFields()) {
+                  System.out.println(f.getGenericType() +" "+f.getName() + " = " + f.get(aData.buffs.self));
+               }
+            }
+               catch(Exception ce){
+               
+               }
+          
+            
+         
+            // public boolean stun = false;
+            // public boolean detect = false;
+            // public boolean vanish = false;
+            // public boolean invincibility = false;
+         // 
+            // public boolean snare = false;
+            // public boolean silence = false;
+            // public boolean charm = false;
+            // public boolean fear = false;
+            // public boolean enrage = false;
+            // public boolean hex = false;  
+         // 
+            // public int duration = 0;
+         // 
+            int result = JOptionPane.showConfirmDialog(null, myPanel, 
+               mode + " Buff Properties", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) {}        
          }
       
       }

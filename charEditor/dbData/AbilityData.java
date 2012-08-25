@@ -80,12 +80,17 @@
          INT, NUMBER, BOOLEAN, STRING;
       }
       public class AttackBuff{
-         public Buff self;
-         public Buff team;
-         public Buff allies;
-         public Buff enemies;
+         public Buff self = new Buff();
+         public Buff team  = new Buff();
+         public Buff allies  = new Buff();
+         public Buff enemies = new Buff();
       }
       public class Buff{
+      
+         // public static String[] statTypes = {"Heal", "Attack", "Defense", "Range", 
+            // "Movement", "Cooldown", "Poison", "Aura"};
+         // public static String[] changeTypes = {"Add", "Mult"}; 
+         
          public int healAdd = 0;
          public double healMissingMult = 0;
          
@@ -102,6 +107,7 @@
          public int movementAdd = 0;
       	
          public double cooldownMult = 1;
+         public int cooldownAdd = 0;
          
          public double poisonMult = 1;
          public int poisonAdd = 0;
@@ -122,6 +128,10 @@
          public boolean hex = false;  
          
          public int duration = 0;
+         
+         public Buff(){
+         
+         }
       
       }
    }
