@@ -22,6 +22,7 @@
       
       public static String path = "";
       
+      public static UnitData unitData;
       public static  DnDTabbedPane sub;
       
    
@@ -31,12 +32,12 @@
       public AbilityPanel(){
          super();
       }
-      public void updateAbilityPanel(CharacterData cData){
+      public void updateAbilityPanel(UnitData cData){
          removeAll();
          setBorder(blackline);
          setLayout(new BorderLayout());
       
-         
+         unitData = cData;
          sub = new DnDTabbedPane();
          //sub.setFont( new Font( "Dialog", Font.BOLD, 12 ) );
          sub.setTabLayoutPolicy(JTabbedPane.WRAP_TAB_LAYOUT);
@@ -49,10 +50,62 @@
             sub.addTab(aData.name, eap);
          
          }
+         MouseListener mouseListener = 
+            new MouseAdapter(){
+               public void mouseClicked(MouseEvent e){
+                  if(e.getButton() == 3){
+                  
+                     //int index = list.locationToIndex(e.getPoint());
+                     
+                     JPopupMenu rcMenu = new JPopupMenu();
+                     JMenuItem menuItem;
+                  	
+                     menuItem = new JMenuItem("Add Ability");
+                     menuItem.addActionListener(new AddAbilityListener());
+                     rcMenu.add(menuItem);
+                     menuItem = new JMenuItem("Delete Ability");
+                     menuItem.addActionListener(new DeleteAbilityListener());
+                     rcMenu.add(menuItem);
+                  	
+                     rcMenu.show(e.getComponent(),e.getX(), e.getY());
+                     //list.setSelectedIndex(index);
+                  } 
+               }
+            };
+            
+         sub.addMouseListener(mouseListener);
+      
          add(sub, BorderLayout.CENTER);
          revalidate();
          repaint();
       }
+      
+      public class AddAbilityListener implements ActionListener{
+         public void actionPerformed(ActionEvent e){
+            AbilityData ad = new AbilityData();
+            ad.fillInActualFields();
+            ad.name = "New Ability";
+            ad.type = "AttackDashSkillshot";
+            abilityData.add(ad);
+            updateAbilityPanel(unitData);
+         }
+      }
+      public class DeleteAbilityListener implements ActionListener{
+      
+         public void actionPerformed(ActionEvent e){
+            JPanel myPanel = new JPanel();
+            myPanel.add(new JLabel("You sure you wanna delete " +abilityData.get(sub.getSelectedIndex()).name+"?"));
+            int result = JOptionPane.showConfirmDialog(null, myPanel, 
+               "Warning Popup!", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) { 
+               abilityData.remove(sub.getSelectedIndex());
+               updateAbilityPanel(unitData);
+            }       
+           
+         }
+      }
+   
+   
       public static class EditAbilityPanel extends JPanel{
          public JTextField nameField, iconField, dmgBaseField, dmgRatioField, rangeField, cdField;
          public JTextArea descriptionArea;
@@ -222,22 +275,6 @@
                
                }
           
-            
-         
-            // public boolean stun = false;
-            // public boolean detect = false;
-            // public boolean vanish = false;
-            // public boolean invincibility = false;
-         // 
-            // public boolean snare = false;
-            // public boolean silence = false;
-            // public boolean charm = false;
-            // public boolean fear = false;
-            // public boolean enrage = false;
-            // public boolean hex = false;  
-         // 
-            // public int duration = 0;
-         // 
             int result = JOptionPane.showConfirmDialog(null, myPanel, 
                mode + " Buff Properties", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {}        
@@ -247,10 +284,11 @@
       public static ImageIcon createAbilityIcon(String id){
          ImageIcon image;
          String filename = "";
-         File cwd = new File("\\..");
-            
+         //File cwd = new File("\\..");
+         File cwd = new File("."); 
          try{
             boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons") ||
+               // tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\characters\\") ||
                			tryPath(cwd, "\\..\\..\\p\\assets\\icons") ||
                			tryPath(cwd, "\\assets\\icons");
          

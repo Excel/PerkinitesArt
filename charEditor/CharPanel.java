@@ -18,23 +18,27 @@
       public static JPanel listPanel, bigEditPanel, editPanel;
       public static Border blackline = BorderFactory.createLineBorder(Color.black);
       public static ArrayList<CharacterData> charData;
+      public static ArrayList<EnemyData> enemyData;
       
       public static JTextField nameField, idField, spriteField,
        healthField, defenseField, speedField, weaponField, 
-       healthlevelField, attacklevelField, speedlevelField;
+       healthlevelField, attacklevelField, speedlevelField, 
+       aiField;
    
       
       public static String path = "";
       
       int selectedCharIndex = -1;
       
-   
+      String mode = "Character";
       
-      public CharPanel(ArrayList<CharacterData> cData){
+      public CharPanel(ArrayList<CharacterData> cData, ArrayList<EnemyData> eData){
          super();
          charData = cData;
+         enemyData = eData;
       }
-      public void updateCharPanel(int index){
+      public void updateCharPanel(int index, String m){
+         mode = m;
       //CHAR Panel with have a list panel, an edit panel, and a sub-edit panel
          removeAll();
          setLayout(new BorderLayout());
@@ -49,8 +53,18 @@
          editPanel.setLayout(new GridLayout(16, 1, 1, 0));
          
          selectedCharIndex = index;
-         CharacterData cData = charData.get(selectedCharIndex);
-        
+         UnitData cData;
+         switch(mode){
+            case "Character": 
+               cData = charData.get(selectedCharIndex);
+               break;
+            case "Enemy":
+               cData = enemyData.get(selectedCharIndex);
+               break;
+            default:
+               cData = enemyData.get(selectedCharIndex);
+               break;
+         }
                 
       	//Fields and stuff are here.
       	
@@ -64,11 +78,6 @@
          healthField = new JTextField(cData.health+"",20);
          defenseField = new JTextField(cData.defense+"",20);
          speedField = new JTextField(cData.speed+"",20);
-         healthlevelField = new JTextField(cData.levelBonuses.health+"",20);
-         attacklevelField = new JTextField(cData.levelBonuses.attack+"",20);
-         speedlevelField = new JTextField(cData.levelBonuses.speed+"",20);
-         weaponField = new JTextField(cData.weapon,20);
-      
          editPanel.add(new JLabel("Name:"));
          editPanel.add(nameField);
          editPanel.add(new JLabel("ID:"));
@@ -81,15 +90,32 @@
          editPanel.add(defenseField);
          editPanel.add(new JLabel("Speed:"));
          editPanel.add(speedField);
-         editPanel.add(new JLabel("Health per Level:"));
-         editPanel.add(healthlevelField);
-         editPanel.add(new JLabel("Attack per Level:"));
-         editPanel.add(attacklevelField);
-         editPanel.add(new JLabel("Speed per Level:"));
-         editPanel.add(speedlevelField);
-         editPanel.add(new JLabel("Weapon:"));
-         editPanel.add(weaponField);
-         
+         switch(mode){
+            case "Character": 
+               healthlevelField = new JTextField(((CharacterData)cData).levelBonuses.health+"",20);
+               attacklevelField = new JTextField(((CharacterData)cData).levelBonuses.attack+"",20);
+               speedlevelField = new JTextField(((CharacterData)cData).levelBonuses.speed+"",20);
+               weaponField = new JTextField(((CharacterData)cData).weapon,20);
+               
+               editPanel.add(new JLabel("Health per Level:"));
+               editPanel.add(healthlevelField);
+               editPanel.add(new JLabel("Attack per Level:"));
+               editPanel.add(attacklevelField);
+               editPanel.add(new JLabel("Speed per Level:"));
+               editPanel.add(speedlevelField);
+               editPanel.add(new JLabel("Weapon:"));
+               editPanel.add(weaponField);
+            
+               break;
+            case "Enemy": 
+               aiField = new JTextField(((EnemyData)cData).ai,20);
+               editPanel.add(new JLabel("AI Mode:"));
+               editPanel.add(aiField);
+               break;
+         }
+      
+      
+               
          bigEditPanel.add(editPanel, BorderLayout.CENTER);
          add(bigEditPanel, BorderLayout.CENTER);
       
@@ -102,12 +128,16 @@
       public static ImageIcon createFaceIcon(String id){
          ImageIcon image;
          String filename = "";
-         File cwd = new File("\\..");
-      
+         
+
+      	// File cwd = new File("\\..");
+         File cwd = new File("."); 
          try{
             boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons") ||
+               // tryPath(cwd, "\\..\\Perkinites v2\\assets\\icons\\") ||
                			tryPath(cwd, "\\..\\..\\p\\assets\\icons") ||
                			tryPath(cwd, "\\assets\\icons");
+         	
             filename = path + "\\Face Icon - " + id + ".png";
          }
             catch (Exception e){
@@ -128,7 +158,36 @@
       }
       
       public void updateCharacter(){
-         CharacterData cData = charData.get(selectedCharIndex);
+         UnitData cData;
+         switch(mode){
+            case "Character": 
+               cData = charData.get(selectedCharIndex);
+               if(healthlevelField.getText().matches("^\\d*$")){
+                  ((CharacterData)cData).levelBonuses.health = Integer.parseInt(healthlevelField.getText());
+               }
+               if(attacklevelField.getText().matches("^\\d*$")){
+                  ((CharacterData)cData).levelBonuses.attack = Integer.parseInt(attacklevelField.getText());
+               }
+               if(speedlevelField.getText().matches("^\\d*$")){
+                  ((CharacterData)cData).levelBonuses.speed = Integer.parseInt(speedlevelField.getText());
+               }
+               if(weaponField.getText().matches(".*\\w.*")){
+                  ((CharacterData)cData).weapon = weaponField.getText();
+               }
+               break;
+            case "Enemy":
+               cData = enemyData.get(selectedCharIndex);
+               if(aiField.getText().matches(".*\\w.*")){
+                  ((EnemyData)cData).ai = aiField.getText();
+               }
+               break;
+            default:
+               cData = enemyData.get(selectedCharIndex);
+               if(aiField.getText().matches(".*\\w.*")){
+                  ((EnemyData)cData).ai = aiField.getText();
+               }
+               break;
+         }
          if(nameField.getText().matches(".*\\w.*")){ 
             cData.name = nameField.getText();
          }
@@ -146,25 +205,7 @@
          }
          if(speedField.getText().matches("^\\d*$")){
             cData.speed = Integer.parseInt(speedField.getText());
-         }
-         if(healthlevelField.getText().matches("^\\d*$")){
-            cData.levelBonuses.health = Integer.parseInt(healthlevelField.getText());
-         }
-         if(attacklevelField.getText().matches("^\\d*$")){
-            cData.levelBonuses.attack = Integer.parseInt(attacklevelField.getText());
-         }
-         if(speedlevelField.getText().matches("^\\d*$")){
-            cData.levelBonuses.speed = Integer.parseInt(speedlevelField.getText());
-         }
-         if(weaponField.getText().matches(".*\\w.*")){
-            cData.weapon = weaponField.getText();
          }   
-      
-      
-      
-      
-      
-      
       }
       	/**
    	 * returns false if path passed in doesn't exist

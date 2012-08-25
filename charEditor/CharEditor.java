@@ -30,33 +30,33 @@
    public class CharEditor {
    
       public static String path;
+      public static String mode = "Character";
    
       public static String[] charIDs;
+      public static String[] enemyIDs;
       
       public static ArrayList<CharacterData> charData = new ArrayList<CharacterData>();
-      public static String selectedCharacter = "";   
+      public static ArrayList<EnemyData> enemyData = new ArrayList<EnemyData>();
       public static JPanel mainPanel;
       public static JPanel listPanel;
       public static CharPanel charPanel;
       public static AbilityPanel abilityPanel;
-      public static JComboBox boxAbilities;
-      
-   	
-      
+     
       public static Border blackline = BorderFactory.createLineBorder(Color.black);
       
-   
       public static void main(String[] args) throws Exception {
       
          AbilityData.init();
       
-         File cwd = new File("\\..");
+         //File cwd = new File("\\..");
+         File cwd = new File(".");
+         boolean test = tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\") ||
+            //boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\data\\") ||
+            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\") ||
+            				tryPath(cwd, "\\assets\\data\\");
       	
-         boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\data\\characters\\") ||
-            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\characters\\") ||
-            				tryPath(cwd, "\\assets\\data\\characters\\");
-      	
-         loadCharacterNames();
+         loadCharacters();
+         loadEnemies();
       	
          showGUI();
       }
@@ -89,13 +89,12 @@
             
          }
       }
-      public static void loadCharacterNames() throws Exception {
+      public static void loadCharacters() throws Exception {
          Gson gson = new GsonBuilder()
             .registerTypeAdapter(AbilityData.class, new AbilityDataDeserializer())
             .create();
-         ArrayList<String> tempNames = new ArrayList<String>();
          ArrayList<String> tempIDs = new ArrayList<String>();
-         JsonReader reader = new JsonReader(new FileReader(path + "characters.json"));
+         JsonReader reader = new JsonReader(new FileReader(path + "characters\\characters.json"));
       
          reader.beginObject();
          reader.setLenient(true);
@@ -107,11 +106,10 @@
           
             
             BufferedReader br = new BufferedReader(
-                  new FileReader(path + charName + ".json"));
+                  new FileReader(path + "characters\\"+charName + ".json"));
             
             CharacterData character = gson.fromJson(br, CharacterData.class);
             charData.add(character);
-            tempNames.add(character.name);
             tempIDs.add(charName);
          }
          reader.endArray();
@@ -121,6 +119,36 @@
         
          charIDs = tempIDs.toArray(new String[tempIDs.size()]);
       }
+      
+      public static void loadEnemies() throws Exception {
+         Gson gson = new GsonBuilder()
+            .registerTypeAdapter(AbilityData.class, new AbilityDataDeserializer())
+            .create();
+         ArrayList<String> tempIDs = new ArrayList<String>();
+         JsonReader reader = new JsonReader(new FileReader(path + "enemies\\enemies.json"));
+      
+         reader.beginObject();
+         reader.setLenient(true);
+      
+         String name = reader.nextName();
+         reader.beginArray();
+         while (reader.hasNext()) {
+            String enemyName = reader.nextString();
+            
+            BufferedReader br = new BufferedReader(
+                  new FileReader(path + "enemies\\" + enemyName + ".json"));
+            
+            EnemyData enemy = gson.fromJson(br, EnemyData.class);
+            enemyData.add(enemy);
+            tempIDs.add(enemyName);
+         }
+         reader.endArray();
+      
+         reader.endObject();
+         reader.close();
+        
+         enemyIDs = tempIDs.toArray(new String[tempIDs.size()]);
+      }	
    
       public static void showGUI() throws Exception {
       	
@@ -134,13 +162,11 @@
          frame.add(mainPanel);
       	       
         	// show character data
-         selectedCharacter = charData.get(0).name;
-        
-                
-         charPanel = new CharPanel(charData); 
-         charPanel.updateCharPanel(0); 
+         charPanel = new CharPanel(charData, enemyData); 
+         charPanel.updateCharPanel(0, mode); 
          
          abilityPanel = new AbilityPanel();
+         
          abilityPanel.updateAbilityPanel(charData.get(0));
       
          listPanel = new JPanel();
@@ -151,7 +177,7 @@
          
          JTabbedPane pane = new JTabbedPane(JTabbedPane.TOP);
          pane.setBorder(blackline);
-         pane.add("Perkinite on File", (JPanel)charPanel);
+         pane.add("Subject on File", (JPanel)charPanel);
          subPanel.add(pane);
          subPanel.add(abilityPanel);
          
@@ -170,18 +196,53 @@
       	
          DefaultListModel model = new DefaultListModel();
          final JList list = new JList(model);
+         JPanel beginPanel = new JPanel();
+         beginPanel.setLayout(new GridLayout(2,1));
+         switch(mode){
+            case "Character":
+               for(int i = 0; i < charIDs.length; i++){
+                  model.add(i, charIDs[i]);
+               }
+               beginPanel.add(new JLabel("List of Perkinites :)"));
+               break;
+            case "Enemy":
+               for(int i = 0; i < enemyIDs.length; i++){
+                  model.add(i, enemyIDs[i]);
+               }
+               beginPanel.add(new JLabel("List of Enemies :("));
+               break;
          
-      	
-         for(int i = 0; i < charIDs.length; i++){
-            model.add(i, charIDs[i]);
          }
+      
+         JButton changeButton = new JButton("Change Mode");
+         changeButton.addActionListener(
+               new ActionListener(){
+                  public void actionPerformed(ActionEvent e){
+                     if(mode == "Character")
+                        mode = "Enemy";
+                     else
+                        mode = "Character";
+                     makeListPanel(0);
+                     charPanel.updateCharPanel(0, mode); 
+                     switch(mode){
+                        case "Character": 
+                           abilityPanel.updateAbilityPanel(charData.get(0));
+                           break;
+                        case "Enemy": 
+                           abilityPanel.updateAbilityPanel(enemyData.get(0));
+                           break;
+                     }
+                  
+                  
+                  }
+               });
+      
+         beginPanel.add(changeButton); 
+         listPanel.add(beginPanel,BorderLayout.PAGE_START);
       	      
-         
          listPanel.add(list, BorderLayout.LINE_START);
-         listPanel.add(new JLabel("List of Perkinites :)"), BorderLayout.PAGE_START);
          listPanel.add(list, BorderLayout.CENTER);   
          list.setSelectedIndex(index);
-      
       
          MouseListener mouseListener = 
             new MouseAdapter(){
@@ -196,7 +257,7 @@
                      menuItem = new JMenuItem("Change ID");
                      menuItem.addActionListener(new ChangeIDListener(index));
                      rcMenu.add(menuItem);
-                     menuItem = new JMenuItem("Create New Character");
+                     menuItem = new JMenuItem("Create New Entry");
                      menuItem.addActionListener(new CreateNewListener());
                      rcMenu.add(menuItem);
                   	
@@ -209,13 +270,19 @@
                      int index = list.locationToIndex(e.getPoint());
                      charPanel.updateCharacter();
                      abilityPanel.updateAbilities();
-                     charPanel.updateCharPanel(index); 
-                     abilityPanel.updateAbilityPanel(charData.get(index));
+                     charPanel.updateCharPanel(index, mode); 
+                     switch(mode){
+                        case "Character": 
+                           abilityPanel.updateAbilityPanel(charData.get(index));
+                           break;
+                        case "Enemy": 
+                           abilityPanel.updateAbilityPanel(enemyData.get(index));
+                           break;
+                     }
                   }
                }
             };     
          list.addMouseListener(mouseListener);
-         
          JButton saveButton = new JButton("Save Changes");
          saveButton.addActionListener(
                new ActionListener(){
@@ -228,6 +295,7 @@
                         }
                   }
                });
+      
          listPanel.add(saveButton, BorderLayout.PAGE_END);
          mainPanel.add(listPanel, BorderLayout.LINE_START);
          
@@ -244,19 +312,37 @@
             _index = index;
          }
          public void actionPerformed(ActionEvent e){
-            JTextField idField = new JTextField(charIDs[_index], 20);
+            JTextField idField;
+            switch(mode){
+               case "Character":
+                  idField = new JTextField(charIDs[_index], 20);
+                  break;
+               case "Enemy":
+                  idField = new JTextField(enemyIDs[_index], 20);
+                  break;
+               default:
+                  idField = new JTextField(charIDs[_index], 20);
+                  break;
+            }
             JPanel myPanel = new JPanel();  
             myPanel.setLayout(new GridLayout(2, 1));
             myPanel.add(new JLabel("Char ID"));
             myPanel.add(idField);
                     	         	
             int result = JOptionPane.showConfirmDialog(null, myPanel, 
-               "Character Properties - ID: " + _index, JOptionPane.OK_CANCEL_OPTION);
+               "Properties - ID: " + _index, JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                if(!idField.getText().matches(".*\\w.*")){
                   idField.setText("BLANK");
                }
-               charIDs[_index] = idField.getText();
+               switch(mode){
+                  case "Character":
+                     charIDs[_index] = idField.getText();
+                     break;
+                  case "Enemy":
+                     enemyIDs[_index] = idField.getText();                     
+                     break;
+               }
                makeListPanel(_index);
             }
          
@@ -272,16 +358,28 @@
             myPanel.add(idField);
                     	         	
             int result = JOptionPane.showConfirmDialog(null, myPanel, 
-               "Make a new Perkinite!", JOptionPane.OK_CANCEL_OPTION);
+               "Make a new Thing!", JOptionPane.OK_CANCEL_OPTION);
             if (result == JOptionPane.OK_OPTION) {
                if(!idField.getText().matches(".*\\w.*")){
                   idField.setText("BLANK");
                }
                
-               ArrayList<String> temp = new ArrayList<String>(Arrays.asList(charIDs));
+               ArrayList<String> temp = new ArrayList<String>();
                temp.add(idField.getText());
-               charIDs = temp.toArray(new String[temp.size()]);
-               CharacterData cData = new CharacterData("");
+               UnitData cData = new UnitData();
+               switch(mode){
+                  case "Character": 
+                     temp = new ArrayList<String>(Arrays.asList(charIDs));
+                     charIDs = temp.toArray(new String[temp.size()]);
+                     cData = new CharacterData();
+                     break;
+                  case "Enemy": 
+                     temp = new ArrayList<String>(Arrays.asList(enemyIDs));
+                     charIDs = temp.toArray(new String[temp.size()]);
+                     cData = new EnemyData();
+                     break;
+               }  
+            	
                cData.abilities = new ArrayList<AbilityData>();
                AbilityData ad = new AbilityData();
                ad.fillInActualFields();
@@ -292,12 +390,30 @@
             
                cData.abilities.add(ad);
                cData.abilities.add(ad2);
-               charData.add(cData);
+               switch(mode){
+                  case "Character": 
+                    
+                     charData.add((CharacterData)cData);
+                     break;
+                  case "Enemy": 
+                   
+                     enemyData.add((EnemyData)cData);                     
+                     break;
+               }  
+            	
                makeListPanel(temp.size()-1);
                charPanel.updateCharacter();
                abilityPanel.updateAbilities();
-               charPanel.updateCharPanel(temp.size()-1); 
-               abilityPanel.updateAbilityPanel(charData.get(temp.size()-1));
+               charPanel.updateCharPanel(temp.size()-1, mode); 
+               switch(mode){
+                  case "Character": 
+                     abilityPanel.updateAbilityPanel(charData.get(temp.size()-1));
+                     break;
+                  case "Enemy": 
+                     abilityPanel.updateAbilityPanel(enemyData.get(temp.size()-1));
+                     break;
+               }
+              
                
             }
          
@@ -308,10 +424,11 @@
       public static void save() throws Exception {
          Gson gson = new GsonBuilder()
             .setPrettyPrinting()
+            .registerTypeAdapter(String.class, new StringSerializer())
             .registerTypeAdapter(AbilityData.class, new AbilityDataSerializer())
             .create();
             
-         JsonWriter writer = new JsonWriter(new FileWriter(path + "characters.json"));
+         JsonWriter writer = new JsonWriter(new FileWriter(path + "characters\\characters.json"));
          writer.setLenient(true);
          writer.setIndent("\t");
                
@@ -326,18 +443,54 @@
          writer.endObject();
          writer.close();                                
       
-         for(int i = 0; i < 1; i++){
+         for(int i = 0; i < charData.size(); i++){
             CharacterData cData = charData.get(i);
             
             String json = gson.toJson(cData);
          
-            FileWriter filewriter = new FileWriter(path + charIDs[i] + "_c.json");
+            FileWriter filewriter = new FileWriter(path + "characters\\"+charIDs[i]+  ".json");
             filewriter.write(json);
             filewriter.close();
             
          }
          
+      	
+         writer = new JsonWriter(new FileWriter(path + "enemies\\enemies.json"));
+         writer.setLenient(true);
+         writer.setIndent("\t");
+               
+         writer.beginObject();
+         writer.name("enemies");
+         writer.beginArray();
+         for(int i = 0; i < enemyIDs.length; i++){
+            writer.value(enemyIDs[i]);
+         }
+            		
+         writer.endArray();  
+         writer.endObject();
+         writer.close();                                
+      
+         for(int i = 0; i < enemyData.size(); i++){
+            EnemyData cData = enemyData.get(i);
+            
+            String json = gson.toJson(cData);
+         
+            FileWriter filewriter = new FileWriter(path + "enemies\\"+enemyIDs[i] + ".json");
+            filewriter.write(json);
+            filewriter.close();
+            
+         }
+      
+         
       } 
+      private static class StringSerializer implements JsonSerializer<String> {
+         public JsonElement serialize(String src, Type typeOfSrc, JsonSerializationContext context) {
+            if(src.toString().length() == 0){
+               return null;
+            }
+            return new JsonPrimitive(src.toString());
+         }
+      }
       private static class AbilityDataSerializer implements JsonSerializer<AbilityData> {
          public JsonElement serialize(AbilityData src, Type typeOfSrc, JsonSerializationContext context) {
          
@@ -353,9 +506,36 @@
             
             Set keyset = src.fields.get(src.type).keySet();
             Iterator it = keyset.iterator();
+            Map<String, AbilityData.FieldTypes> f = AbilityData.fields.get(src.type);
+                               
             while(it.hasNext()){
                String key = (String)it.next();
-               obj.addProperty(key, src.actualFields.get(key));
+               AbilityData.FieldTypes value = f.get(key);
+               if(value == AbilityData.FieldTypes.INT){
+               
+                  if(! (!src.actualFields.get(key).matches("^\\d*$") ||src.actualFields.get(key).length() == 0)){
+                     int iValue = Integer.parseInt(src.actualFields.get(key));
+                     if(iValue > 0)
+                        obj.addProperty(key, iValue);
+                  }
+               }
+               else if(value == AbilityData.FieldTypes.NUMBER){
+                  if(! (!src.actualFields.get(key).matches("^\\d*$") ||src.actualFields.get(key).length() == 0)){
+                     double dValue = Double.parseDouble(src.actualFields.get(key));
+                     if(dValue > 0)
+                        obj.addProperty(key, dValue);
+                  }
+               }
+               else if(value == AbilityData.FieldTypes.BOOLEAN){
+                  if(src.actualFields.get(key).matches("true") || src.actualFields.get(key).matches("false") ){
+                     obj.addProperty(key, Boolean.parseBoolean(src.actualFields.get(key)));
+                  }
+               }
+               else if(value == AbilityData.FieldTypes.STRING){
+                  obj.addProperty(key, src.actualFields.get(key)); 
+               }
+            
+               
             }
             return obj;
          }

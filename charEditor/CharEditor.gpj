@@ -1,5 +1,5 @@
 !656;s
-A
+J
 SAU0PATH+=%<JGRASP_PATHS>%;
 SCU0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
 S+U0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
@@ -10,3 +10,22 @@ s#i0
 s#k0
 s#j0
 s#l0
+!78;u
+a0	b70	c255	f%\011CharEditor.jar	g%\011CharEditor.zip	hManifest-Version\0111.0!205;g
+%\011dbData%sAbilityData.java
+%\011CharPanel.java
+%\011CharEditor.java
+%\011DnDTabbedPane.java
+%\011dbData%sCharacterData.java
+%\011AbilityPanel.java
+%\011dbData%sUnitData.java
+%\011dbData%sEnemyData.java
+!181;f
+%	dbData%sAbilityData.java
+%	CharPanel.java
+%	CharEditor.java
+%	DnDTabbedPane.java
+%	dbData%sCharacterData.java
+%	AbilityPanel.java
+%	dbData%sUnitData.java
+%	dbData%sEnemyData.java
