@@ -47,13 +47,12 @@
       public static void main(String[] args) throws Exception {
       
          AbilityData.init();
-      
-         //File cwd = new File("\\..");
+
          File cwd = new File(".");
-         boolean test = tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\") ||
-            //boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\data\\") ||
-            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\") ||
-            				tryPath(cwd, "\\assets\\data\\");
+      	
+         boolean test = tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\characters\\") ||
+            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\characters\\") ||
+            				tryPath(cwd, "\\assets\\data\\characters\\");
       	
          loadCharacters();
          loadEnemies();
