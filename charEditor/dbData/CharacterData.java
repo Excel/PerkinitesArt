@@ -24,8 +24,5 @@
       public class LevelBonus {
          public int health, attack, speed;
       
-         public LevelBonus(){
-         
-         }
       }
    }

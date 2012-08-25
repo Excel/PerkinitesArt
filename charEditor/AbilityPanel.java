@@ -56,16 +56,20 @@
          public JTextArea descriptionArea;
          public JComboBox typeBox;
          public JPanel addPanel;
+         public JButton selfbuffButton = new JButton("Self Buff");
+         public JButton teambuffButton = new JButton("Team Buff");
+         public JButton alliesbuffButton = new JButton("Allies Buff");
+         public JButton enemiesbuffButton = new JButton("Enemies Buff");
          
-         public ArrayList<JLabel> addLabels;
-         public ArrayList<JTextField> addFields;
+         public ArrayList<JLabel> addLabels = new ArrayList<JLabel>();
+         public ArrayList<JTextField> addFields = new ArrayList<JTextField>();
          
          public EditAbilityPanel(AbilityData aData){
             super();
             setLayout(new BorderLayout());
          
             JPanel editPanel = new JPanel();
-            editPanel.setLayout(new GridLayout(8, 2));
+            editPanel.setLayout(new GridLayout(16, 4, 1, 1));
          
          //Fields and stuff are here.
          
@@ -75,7 +79,7 @@
             typeBox = new JComboBox(attacks.toArray());
             typeBox.setSelectedIndex(attacks.indexOf(aData.type));
             ChangeAddListener cal = new ChangeAddListener();
-            cal.setAbilityData(aData);
+            cal.setAbilityData(aData, editPanel);
             typeBox.addActionListener(cal);
             
             iconField = new JTextField(aData.icon, 30);
@@ -90,9 +94,6 @@
             add(faceIcon, BorderLayout.PAGE_START);
             editPanel.add(new JLabel("Name:"));
             editPanel.add(nameField);
-            
-            // QuickUpdateListener qul = new QuickUpdateListener();
-            // nameField.addActionListener(qul);
             
             editPanel.add(new JLabel("Type of Attack:"));
             editPanel.add(typeBox);
@@ -110,9 +111,11 @@
             editPanel.add(new JLabel("Cooldown:"));
             editPanel.add(cdField);
          
-            addPanel = new JPanel();
-            add(addPanel, BorderLayout.PAGE_END);
-            updateAddPanel(aData);
+         
+            //addPanel = new JPanel();
+            //add(addPanel, BorderLayout.PAGE_END);
+            updateAddPanel(editPanel, aData);
+         
             add(editPanel, BorderLayout.CENTER);
                        
          
@@ -120,15 +123,18 @@
          
          public class ChangeAddListener implements ActionListener{
             private AbilityData aData;
+            private JPanel editPanel;
             
-            public void setAbilityData(AbilityData a){
+            public void setAbilityData(AbilityData a, JPanel ep){
                aData = a;
+               editPanel = ep;
             }
             public void actionPerformed(ActionEvent e){
                JComboBox typeBox = (JComboBox)e.getSource();
                String type = (String)typeBox.getSelectedItem();
+               String oldType = aData.type;
                aData.type = type;
-               updateAddPanel(aData);
+               updateAddPanel(editPanel, aData);
             }
          }
          // public class QuickUpdateListener implements ActionListener{
@@ -138,13 +144,20 @@
             //    
             // }
          // }
-         public void updateAddPanel(AbilityData aData){
+         public void updateAddPanel(JPanel editPanel, AbilityData aData){
          
-            remove(addPanel);
-            addPanel = new JPanel();
-          
-            addPanel.setBorder(blackline);
+         
+            for(int i = 0; i < addFields.size(); i++){
+               editPanel.remove(addLabels.get(i));
+               editPanel.remove(addFields.get(i));
             
+            }
+            if(addFields.size() != 0){
+               editPanel.remove(selfbuffButton);
+               editPanel.remove(teambuffButton);
+               editPanel.remove(alliesbuffButton);
+               editPanel.remove(enemiesbuffButton);
+            }
             addLabels = new ArrayList<JLabel>();
             addFields = new ArrayList<JTextField>();
             
@@ -152,24 +165,42 @@
          
             Set fields = map.keySet();
             Iterator it = fields.iterator();
-            addPanel.setLayout(new GridLayout(fields.size(), 2));
             while(it.hasNext()){
                String key = (String)it.next();
                JLabel label = new JLabel(key);
                addLabels.add(label);
-               addPanel.add(label);
+               editPanel.add(label);
                JTextField field = new JTextField(aData.actualFields.get(key));
                addFields.add(field);
-               addPanel.add(field);
+               editPanel.add(field);
             }
-            
-            add(addPanel, BorderLayout.PAGE_END);  
+            selfbuffButton.addActionListener(new BuffListener("self", aData));
+            teambuffButton.addActionListener(new BuffListener("team", aData));
+            alliesbuffButton.addActionListener(new BuffListener("allies", aData));
+            enemiesbuffButton.addActionListener(new BuffListener("enemies", aData));
+         	
+            editPanel.add(selfbuffButton);
+            editPanel.add(teambuffButton);
+            editPanel.add(alliesbuffButton);
+            editPanel.add(enemiesbuffButton);
             revalidate();
             repaint();
          }
       }
    
-   	
+      public static class BuffListener implements ActionListener{
+         private String mode;
+         private AbilityData aData;
+      
+         public BuffListener(String m, AbilityData ad){
+            mode = m;
+            aData = ad;
+         }
+         public void actionPerformed(ActionEvent e){
+                   
+         }
+      
+      }
       public static ImageIcon createAbilityIcon(String id){
          ImageIcon image;
          String filename = "";
