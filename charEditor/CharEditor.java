@@ -50,9 +50,9 @@
 
          File cwd = new File(".");
       	
-         boolean test = tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\characters\\") ||
-            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\characters\\") ||
-            				tryPath(cwd, "\\assets\\data\\characters\\");
+         boolean test = tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\") ||
+            				tryPath(cwd, "\\..\\..\\p\\assets\\data\\") ||
+            				tryPath(cwd, "\\assets\\data\\");
       	
          loadCharacters();
          loadEnemies();
