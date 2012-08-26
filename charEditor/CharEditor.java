@@ -50,7 +50,7 @@
 
          File cwd = new File(".");
       	
-         boolean test = tryPath(cwd, "\\..\\Perkinites v2\\assets\\data\\") ||
+         boolean test = tryPath(cwd, "\\..\\..\\Perkinites v2\\assets\\data\\") ||
             				tryPath(cwd, "\\..\\..\\p\\assets\\data\\") ||
             				tryPath(cwd, "\\assets\\data\\");
       	
@@ -66,6 +66,7 @@
       public static boolean tryPath(File cwd, String p) throws Exception {
          path = cwd.getCanonicalPath() + p;
          File f = new File(path);
+			System.out.println(path);
       	
          return f.exists();
       }

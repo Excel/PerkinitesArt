@@ -129,14 +129,12 @@
          ImageIcon image;
          String filename = "";
          
-
-      	// File cwd = new File("\\..");
-         File cwd = new File("."); 
+      
+         File cwd = new File(".");
          try{
-            boolean test = tryPath(cwd, "\\Projects\\Games\\Flash Games\\Perkinites v2\\assets\\icons") ||
-               // tryPath(cwd, "\\..\\Perkinites v2\\assets\\icons\\") ||
-               			tryPath(cwd, "\\..\\..\\p\\assets\\icons") ||
-               			tryPath(cwd, "\\assets\\icons");
+            boolean test = tryPath(cwd, "\\..\\..\\Perkinites v2\\assets\\icons\\") ||
+               			tryPath(cwd, "\\..\\..\\p\\assets\\icons\\") ||
+               			tryPath(cwd, "\\assets\\icons\\");
          	
             filename = path + "\\Face Icon - " + id + ".png";
          }
