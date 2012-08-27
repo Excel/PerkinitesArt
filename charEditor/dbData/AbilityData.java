@@ -13,6 +13,8 @@
    
       public int range;
       public int cd;
+		
+		public String animLabel;
       
       public static Map<String, Map<String, FieldTypes>> fields;
       public Map<String, String> actualFields = new HashMap<String, String>();
@@ -48,8 +50,15 @@
          f.put("width", FieldTypes.INT);
          f.put("penetrates", FieldTypes.INT);
          f.put("speed", FieldTypes.INT);
-         f.put("stopAtEnemy", FieldTypes.BOOLEAN);
          fields.put("AttackDashSkillshot", f);
+			
+			f = new HashMap<String, FieldTypes>();
+         f.put("width", FieldTypes.INT);
+         f.put("penetrates", FieldTypes.INT);
+         f.put("speed", FieldTypes.INT);
+         f.put("hardTarget", FieldTypes.BOOLEAN);
+         f.put("expires", FieldTypes.INT);			
+         fields.put("AttackHomingProjectiles", f);
       
       }
       public void fillInActualFields(){
