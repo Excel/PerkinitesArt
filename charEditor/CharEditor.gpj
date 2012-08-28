@@ -11,7 +11,7 @@ s#k0
 s#j0
 s#l0
 !106;u
-a0	b70	c255	f%\011CharEditor.jar	g%\011CharEditor.zip	hManifest-Version\0111.0\011Main-Class\011CharEditor!205;g
+a0	b68	c255	f%\011CharEditor.jar	g%\011CharEditor.zip	hManifest-Version\0111.0\011Main-Class\011CharEditor!225;g
 %\011dbData%sAbilityData.java
 %\011CharPanel.java
 %\011CharEditor.java
@@ -19,8 +19,9 @@ a0	b70	c255	f%\011CharEditor.jar	g%\011CharEditor.zip	hManifest-Version\0111.0\0
 %\011dbData%sCharacterData.java
 %\011AbilityPanel.java
 %\011dbData%sUnitData.java
+%\011gson-2.2.2.jar
 %\011dbData%sEnemyData.java
-!181;f
+!198;f
 %	dbData%sAbilityData.java
 %	CharPanel.java
 %	CharEditor.java
@@ -28,4 +29,5 @@ a0	b70	c255	f%\011CharEditor.jar	g%\011CharEditor.zip	hManifest-Version\0111.0\0
 %	dbData%sCharacterData.java
 %	AbilityPanel.java
 %	dbData%sUnitData.java
+%	gson-2.2.2.jar
 %	dbData%sEnemyData.java
