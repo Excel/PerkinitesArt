@@ -47,7 +47,7 @@
       public static void main(String[] args) throws Exception {
       
          AbilityData.init();
-
+      
          File cwd = new File(".");
       	
          boolean test = tryPath(cwd, "\\..\\..\\Perkinites v2\\assets\\data\\") ||
@@ -66,7 +66,7 @@
       public static boolean tryPath(File cwd, String p) throws Exception {
          path = cwd.getCanonicalPath() + p;
          File f = new File(path);
-			System.out.println(path);
+         System.out.println(path);
       	
          return f.exists();
       }
