@@ -13,7 +13,7 @@
    import java.awt.*;  
    import java.awt.event.*;
 	
-   import javax.swing.*;
+   import javax.swing.*; 
    import javax.swing.JList;
    import javax.swing.border.Border;
 
@@ -198,20 +198,17 @@
          final JList list = new JList(model);
          JPanel beginPanel = new JPanel();
          beginPanel.setLayout(new GridLayout(2,1));
-         switch(mode){
-            case "Character":
-               for(int i = 0; i < charIDs.length; i++){
-                  model.add(i, charIDs[i]);
-               }
-               beginPanel.add(new JLabel("List of Perkinites :)"));
-               break;
-            case "Enemy":
-               for(int i = 0; i < enemyIDs.length; i++){
-                  model.add(i, enemyIDs[i]);
-               }
-               beginPanel.add(new JLabel("List of Enemies :("));
-               break;
-         
+         if (mode == "Character"){
+            for(int i = 0; i < charIDs.length; i++){
+               model.add(i, charIDs[i]);
+            }
+            beginPanel.add(new JLabel("List of Perkinites :)"));
+         }
+         else if (mode == "Enemy") {
+            for(int i = 0; i < enemyIDs.length; i++){
+               model.add(i, enemyIDs[i]);
+            }
+            beginPanel.add(new JLabel("List of Enemies :("));
          }
       
          JButton changeButton = new JButton("Change Mode");
@@ -224,13 +221,12 @@
                         mode = "Character";
                      makeListPanel(0);
                      charPanel.updateCharPanel(0, mode); 
-                     switch(mode){
-                        case "Character": 
-                           abilityPanel.updateAbilityPanel(charData.get(0));
-                           break;
-                        case "Enemy": 
-                           abilityPanel.updateAbilityPanel(enemyData.get(0));
-                           break;
+                     if (mode == "Character") {
+                        abilityPanel.updateAbilityPanel(charData.get(0));
+                     } 
+                     else if (mode == "Enemy") {
+                        abilityPanel.updateAbilityPanel(enemyData.get(0));
+                           
                      }
                   
                   
@@ -271,13 +267,11 @@
                      charPanel.updateCharacter();
                      abilityPanel.updateAbilities();
                      charPanel.updateCharPanel(index, mode); 
-                     switch(mode){
-                        case "Character": 
-                           abilityPanel.updateAbilityPanel(charData.get(index));
-                           break;
-                        case "Enemy": 
-                           abilityPanel.updateAbilityPanel(enemyData.get(index));
-                           break;
+                     if (mode == "Character") {
+                        abilityPanel.updateAbilityPanel(charData.get(index));
+                     }
+                     else if (mode == "Enemy") {
+                        abilityPanel.updateAbilityPanel(enemyData.get(index));
                      }
                   }
                }
@@ -313,16 +307,14 @@
          }
          public void actionPerformed(ActionEvent e){
             JTextField idField;
-            switch(mode){
-               case "Character":
-                  idField = new JTextField(charIDs[_index], 20);
-                  break;
-               case "Enemy":
-                  idField = new JTextField(enemyIDs[_index], 20);
-                  break;
-               default:
-                  idField = new JTextField(charIDs[_index], 20);
-                  break;
+            if (mode == "Character" ){
+               idField = new JTextField(charIDs[_index], 20);
+            }
+            else if (mode == "Enemy") {
+               idField = new JTextField(enemyIDs[_index], 20);
+            }
+            else {
+               idField = new JTextField(charIDs[_index], 20);
             }
             JPanel myPanel = new JPanel();  
             myPanel.setLayout(new GridLayout(2, 1));
@@ -335,13 +327,11 @@
                if(!idField.getText().matches(".*\\w.*")){
                   idField.setText("BLANK");
                }
-               switch(mode){
-                  case "Character":
-                     charIDs[_index] = idField.getText();
-                     break;
-                  case "Enemy":
-                     enemyIDs[_index] = idField.getText();                     
-                     break;
+               if (mode == "Character") {
+                  charIDs[_index] = idField.getText();
+               } 
+               else if (mode == "Enemy") {
+                  enemyIDs[_index] = idField.getText();
                }
                makeListPanel(_index);
             }
@@ -367,17 +357,15 @@
                ArrayList<String> temp = new ArrayList<String>();
                temp.add(idField.getText());
                UnitData cData = new UnitData();
-               switch(mode){
-                  case "Character": 
-                     temp = new ArrayList<String>(Arrays.asList(charIDs));
-                     charIDs = temp.toArray(new String[temp.size()]);
-                     cData = new CharacterData();
-                     break;
-                  case "Enemy": 
-                     temp = new ArrayList<String>(Arrays.asList(enemyIDs));
-                     charIDs = temp.toArray(new String[temp.size()]);
-                     cData = new EnemyData();
-                     break;
+               if (mode == "Character") {
+                  temp = new ArrayList<String>(Arrays.asList(charIDs));
+                  charIDs = temp.toArray(new String[temp.size()]);
+                  cData = new CharacterData();
+               }
+               else if (mode == "Enemy") {
+                  temp = new ArrayList<String>(Arrays.asList(enemyIDs));
+                  charIDs = temp.toArray(new String[temp.size()]);
+                  cData = new EnemyData();
                }  
             	
                cData.abilities = new ArrayList<AbilityData>();
@@ -390,28 +378,24 @@
             
                cData.abilities.add(ad);
                cData.abilities.add(ad2);
-               switch(mode){
-                  case "Character": 
+               if (mode == "Character") {
                     
-                     charData.add((CharacterData)cData);
-                     break;
-                  case "Enemy": 
+                  charData.add((CharacterData)cData);
+               } 
+               else if (mode == "Enemy") {
                    
-                     enemyData.add((EnemyData)cData);                     
-                     break;
+                  enemyData.add((EnemyData)cData);
                }  
             	
                makeListPanel(temp.size()-1);
                charPanel.updateCharacter();
                abilityPanel.updateAbilities();
                charPanel.updateCharPanel(temp.size()-1, mode); 
-               switch(mode){
-                  case "Character": 
-                     abilityPanel.updateAbilityPanel(charData.get(temp.size()-1));
-                     break;
-                  case "Enemy": 
-                     abilityPanel.updateAbilityPanel(enemyData.get(temp.size()-1));
-                     break;
+               if (mode == "Character") {
+                  abilityPanel.updateAbilityPanel(charData.get(temp.size()-1));
+               }
+               else if (mode == "Enemy") {
+                  abilityPanel.updateAbilityPanel(enemyData.get(temp.size()-1));
                }
               
                
