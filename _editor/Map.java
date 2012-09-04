@@ -7,6 +7,7 @@
    
       private String name;
       private String id;
+      private String bgmusic;
       private String tileset;
       private int height;
       private int width;
@@ -15,10 +16,11 @@
       private ArrayList<Teleport> teleports;
       private ArrayList<Enemy> enemies;
       private ArrayList<NPC> npcs;
+		
+		private ArrayList<String> sequences;
       
       private int[][] mapMatrix;
       
-      private String BGM;
       private String BGS;
       public Map(){
          name = "";
@@ -31,8 +33,9 @@
          teleports  = new ArrayList<Teleport>();
          enemies = new ArrayList<Enemy>();
          npcs = new ArrayList<NPC>();
+			sequences = new ArrayList<String>();
       
-         BGM = "";
+         bgmusic = "";
          BGS = "";
            
       }
@@ -43,7 +46,7 @@
          return code;
       }
       public String getBGM(){
-         return BGM;
+         return bgmusic;
       }
       public String getBGS(){
          return BGS;
@@ -88,7 +91,7 @@
          mapMatrix = mm;
       }
       public void setBGM(String bgm){
-         BGM = bgm;
+         bgmusic = bgm;
       }
       public void setBGS(String bgs){
          BGS = bgs;

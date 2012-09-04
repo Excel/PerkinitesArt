@@ -406,7 +406,7 @@
                   int x = enemy.getPosition().x;
                   JLabel tile = tileMap[y][x];
                   mapPanel.remove(tile);
-                  Icon enemyIcon = createImageIcon("\\Objects\\enemy.png");
+                  Icon enemyIcon = createImageIcon("\\Objects\\enemy_" + enemy.getID() + ".png");
                   int angle = 0;
                   switch(enemy.getDirection()){
                      case "down":

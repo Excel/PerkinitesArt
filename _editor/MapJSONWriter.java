@@ -57,7 +57,7 @@
       public static ArrayList<Map> writeMapJSON(ArrayList<Map> mapArray){
          Gson gson = new GsonBuilder()
             .setPrettyPrinting()
-            .setExclusionStrategies(new MyExclusionStrategy(NPC.class))
+            .setExclusionStrategies(new MyExclusionStrategy(NPCSequence.class))
             .registerTypeAdapter(String.class, new StringSerializer())
             .create();
         
@@ -87,13 +87,13 @@
                catch (IOException e) {
                   e.printStackTrace();
                }
-            for(int i = 0; i < 1; i++){
+            for(int i = 0; i < mapArray.size(); i++){
                Map map = mapArray.get(i);
             
                String json = gson.toJson(map);
             
                try {
-                  FileWriter writer = new FileWriter(path + map.getID() + ".json");
+                  FileWriter writer = new FileWriter(path + "maps\\"+ map.getID() + ".json");
                   writer.write(json);
                   writer.close();
                

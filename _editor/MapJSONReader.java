@@ -41,7 +41,7 @@
            
             try {
             
-               JsonReader reader = new JsonReader(new FileReader(path + "maps\\bgmusic.json"));
+               JsonReader reader = new JsonReader(new FileReader(path + "sounds.json"));
                
                reader.beginObject();
                reader.setLenient(true);

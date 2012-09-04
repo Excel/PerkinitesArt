@@ -406,6 +406,8 @@
    
                 	
       public static void save() throws Exception {
+         charPanel.updateCharacter();
+         abilityPanel.updateAbilities();
          Gson gson = new GsonBuilder()
             .setPrettyPrinting()
             .registerTypeAdapter(String.class, new StringSerializer())
@@ -431,7 +433,7 @@
             CharacterData cData = charData.get(i);
             
             String json = gson.toJson(cData);
-         
+            System.out.println(cData.health);
             FileWriter filewriter = new FileWriter(path + "characters\\"+charIDs[i]+  ".json");
             filewriter.write(json);
             filewriter.close();
