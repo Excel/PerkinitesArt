@@ -7,7 +7,7 @@
       public ArrayList<Condition> conditions;
       private Point entry;
       //private String map;
-      private Exit exit;
+      public Exit exit;
       public Teleport(Point en, String m, Point ex){
          entry = en;
          exit = new Exit();
@@ -39,6 +39,7 @@
       //get initial bit-by-bit copy, which handles all immutable fields
          Teleport result = (Teleport)super.clone();
       
+         result.exit = (Exit)exit.clone();
          if(conditions == null){
             conditions = new ArrayList<Condition>();
          }
@@ -55,19 +56,34 @@
       
          return result;
       }
-      public static class Exit{
+      public static class Exit implements Cloneable{
          public String map;
          public int x;
          public int y;
          
          public Exit(){
          }
+      	
+         @Override public Object clone() throws CloneNotSupportedException {
+         //get initial bit-by-bit copy, which handles all immutable fields
+            Exit result = (Exit)super.clone();
+                  
+            return result;
+         }
+      	
       }
-      public static class Condition{
+      public static class Condition implements Cloneable{
          public String type;
          public String name;
       	
          public Condition(){
+         }
+         
+         @Override public Object clone() throws CloneNotSupportedException {
+         //get initial bit-by-bit copy, which handles all immutable fields
+            Condition result = (Condition)super.clone();
+                  
+            return result;
          }
       
       }
