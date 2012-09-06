@@ -58,7 +58,8 @@
          f.put("speed", FieldTypes.INT);
          f.put("quantity", FieldTypes.INT);			
          f.put("hardTarget", FieldTypes.BOOLEAN);
-         f.put("expires", FieldTypes.INT);			
+         f.put("expires", FieldTypes.INT);
+         f.put("quantity", FieldTypes.INT);
          fields.put("AttackHomingProjectiles", f);
       
       }
