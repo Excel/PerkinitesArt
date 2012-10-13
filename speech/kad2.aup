@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<audacityproject projname="kad2_data" version="1.1.0" audacityversion="1.2.6" sel0="1.4044529849" sel1="1.4044529849" vpos="2256" h="0.0000000000" zoom="192.9576873779" rate="44100.000000" >
+	<tags title="" artist="" album="" track="-1" year="" genre="-1" comments="" id3v2="1" />
+	<wavetrack name="b00006" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00000.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00006.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.991546' rms='0.270251'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00008" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00002.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00008.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.994263' rms='0.228013'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00010" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00004.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00010.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.999268' rms='0.279596'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00012" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00006.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00012.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.998779' rms='0.248101'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00015" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="212480" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00009.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00015.au' aliasstart='0' aliaslen='212480' aliaschannel='0' min='-0.995880' max='0.995880' rms='0.144231'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00017" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00011.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00017.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.999390' max='0.999695' rms='0.265998'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00019" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00013.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00019.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.319115'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00021" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00015.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00021.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.340404'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00023" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00017.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00023.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.280664'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00025" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00019.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00025.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.316677'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00027" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00021.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00027.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.205763'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00029" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="111616" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00023.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00029.au' aliasstart='0' aliaslen='111616' aliaschannel='0' min='-0.979949' max='0.994079' rms='0.155258'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00031" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00025.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00031.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.997375' rms='0.334050'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00033" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00027.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00033.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.999847' max='0.992950' rms='0.315562'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00035" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00029.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00035.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.432544'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00037" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00031.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00037.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.996124' max='0.856533' rms='0.245185'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00039" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="41984" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00033.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00039.au' aliasstart='0' aliaslen='41984' aliaschannel='0' min='-0.290201' max='0.384838' rms='0.042078'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00040" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00034.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00040.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.996704' max='0.996796' rms='0.227769'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00043" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00037.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00043.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.321879'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00045" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="141824" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00039.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00045.au' aliasstart='0' aliaslen='141824' aliaschannel='0' min='-0.992950' max='0.995148' rms='0.177455'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00047" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00041.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00047.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.996857' rms='0.271130'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00049" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00043.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00049.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.999298' max='1.000000' rms='0.345329'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00051" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00045.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00051.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.998138' max='0.999725' rms='0.282561'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00053" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00047.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00053.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='0.997772' rms='0.291402'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00054" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00048.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00054.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.999237' max='0.998596' rms='0.300739'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00056" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="146944" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00050.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00056.au' aliasstart='0' aliaslen='146944' aliaschannel='0' min='-0.998505' max='1.000000' rms='0.202133'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00059" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00053.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00059.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.995666' max='0.997070' rms='0.242037'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00060" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00054.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00060.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.995270' max='0.996002' rms='0.242286'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00063" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00057.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00063.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-0.998108' max='0.996429' rms='0.312373'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00064" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="69120" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00058.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00064.au' aliasstart='0' aliaslen='69120' aliaschannel='0' min='-0.479110' max='0.525224' rms='0.058285'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00001" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="44032" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00061.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00001.au' aliasstart='0' aliaslen='44032' aliaschannel='0' min='-0.122715' max='0.083926' rms='0.012089'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00002" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00062.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00002.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.364393'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+	<wavetrack name="b00005" channel="2" linked="0" offset="0.00000000" rate="44100.000000" gain="1.000000" pan="0.000000" >
+		<sequence maxsamples="262144" sampleformat="262159" numsamples="262144" >
+			<waveblock start="0" >
+				<pcmaliasblockfile summaryfile='b00065.auf' aliasfile='C:\Users\charles_2\Desktop\audacity_1_2_temp\b00005.au' aliasstart='0' aliaslen='262144' aliaschannel='0' min='-1.000000' max='1.000000' rms='0.349488'/>
+			</waveblock>
+		</sequence>
+		<envelope numpoints='0'>
+		</envelope>
+	</wavetrack>
+</audacityproject>
