@@ -79,7 +79,7 @@
       
       public static Object copiedObject = null;
       
-   	public static String path = "";
+      public static String path = "";
    	
       public static JLabel superlabel = new JLabel("I tell you stuff!");
       
@@ -252,7 +252,14 @@
          
             c.gridx = i%8;
             c.gridy = (int)(i/8);
-            JLabel tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+i+".png"));
+            JLabel tile;
+            if(i > 9){
+               tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(i+55)+".png"));
+            }
+            else{
+               tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+i+".png"));
+            
+            }
             tileArray.add(tile);
             tile.addMouseListener(new TileSelectListener(i));
             pane.add(tile, c);
@@ -367,7 +374,13 @@
                for(int j = 0; j < col; j++){
                   c.gridx = j;
                   c.gridy = i;
-                  JLabel tile =  new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[i][j]+".png")); 
+                  JLabel tile;
+                  if(mapMatrix[i][j] > 9){
+                     tile =  new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(mapMatrix[i][j]+55)+".png")); 
+                  }
+                  else{
+                   tile =  new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[i][j]+".png")); 
+                 }
                   if(mapMode){   
                      tile.addMouseListener(new TileListener(j, i, tile, mapMatrix[i][j] ));
                   }
@@ -389,8 +402,14 @@
                   JLabel tile = tileMap[y][x];
                   mapPanel.remove(tile);
                   Icon teleportIcon = createImageIcon("\\Objects\\teleport.png");
-                  Icon tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[y][x]+".png");
-                
+                  Icon tileIcon;
+                  if(mapMatrix[y][x] > 9){
+                     tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(mapMatrix[y][x]+55)+".png"); 
+                  
+                  }
+                  else{
+                     tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[y][x]+".png");
+                  }
                   tile = new JLabel(new CompoundIcon(CompoundIcon.Axis.Z_AXIS, 0, CompoundIcon.CENTER, CompoundIcon.CENTER, tileIcon, teleportIcon));
                   c.gridx = x;
                   c.gridy = y;
@@ -438,8 +457,13 @@
                   bg.dispose();//cleans up resources
                   enemyIcon = (new ImageIcon(bi));
                        
-                  Icon tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[y][x]+".png");
-                
+                  Icon tileIcon;
+                  if(mapMatrix[y][x] > 9){
+                     tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(mapMatrix[y][x]+55)+".png");
+                  }
+                  else{
+                     tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[y][x]+".png");
+                  }
                   tile = new JLabel(new CompoundIcon(CompoundIcon.Axis.Z_AXIS, 0, CompoundIcon.CENTER, CompoundIcon.CENTER, tileIcon, enemyIcon));
                   c.gridx = x;
                   c.gridy = y;
@@ -455,8 +479,14 @@
                   int x = npc.getPosition().x;
                   JLabel tile = tileMap[y][x];
                   mapPanel.remove(tile);
-                  Icon enemyIcon = createImageIcon("\\Objects\\npc.png");
-                  Icon tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[y][x]+".png");
+                  Icon enemyIcon = createImageIcon("\\Objects\\npc.png");              
+                  Icon tileIcon;
+                  if(mapMatrix[y][x] > 9){
+                     tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(mapMatrix[y][x]+55)+".png"); 
+                  }
+                  else{
+                     tileIcon = createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+mapMatrix[y][x]+".png");
+                  }
                 
                   tile = new JLabel(new CompoundIcon(CompoundIcon.Axis.Z_AXIS, 0, CompoundIcon.CENTER, CompoundIcon.CENTER, tileIcon, enemyIcon));
                   c.gridx = x;
@@ -904,8 +934,13 @@
                if(_tileType != selectedTileID){
                
                   mapPanel.remove(_tile);
-               
-                  _tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png"));
+                  if(selectedTileID > 9){
+                     _tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(selectedTileID+55)+".png"));
+                  }
+                  else{
+                     _tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png"));
+                  }
+                  
                   GridBagConstraints c = new GridBagConstraints();
                   c.gridx = _x;
                   c.gridy = _y;
@@ -966,7 +1001,13 @@
                         
                         c.gridx = j;
                         c.gridy = i;
-                        JLabel tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png")); 
+                        JLabel tile;
+                        if(selectedTileID > 9){
+                           tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(selectedTileID+55)+".png")); 
+                        }
+                        else{
+                           tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png")); 
+                        }
                         tileMap[i][j] = tile;
                         tile.addMouseListener(new TileListener(j, i, tile, selectedTileID ));
                         tile.setBorder(null);
@@ -996,8 +1037,13 @@
                   if(_tileType != selectedTileID){
                   
                      mapPanel.remove(_tile);
-                  
-                     _tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png"));
+                     
+                     if(selectedTileID > 9){
+                        _tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(selectedTileID+55)+".png")); 
+                     }
+                     else{
+                        _tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png")); 
+                     }
                      GridBagConstraints c = new GridBagConstraints();
                      c.gridx = _x;
                      c.gridy = _y;
@@ -1047,7 +1093,14 @@
                         
                            c.gridx = j;
                            c.gridy = i;
-                           JLabel tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png")); 
+                           JLabel tile;
+                           if(selectedTileID > 9){
+                              tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+(char)(selectedTileID+55)+".png")); 
+                           }
+                           else{
+                              tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png")); 
+                           }
+                           //JLabel tile = new JLabel(createImageIcon("\\Tileset_"+tilesets[currentTilesetIndex]+"\\Tile"+selectedTileID+".png")); 
                            tileMap[i][j] = tile;
                            tile.addMouseListener(new TileListener(j, i, tile, selectedTileID ));
                            tile.setBorder(null);

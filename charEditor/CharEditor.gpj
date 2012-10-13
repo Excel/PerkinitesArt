@@ -15,21 +15,21 @@ s#l0
 !106;u
 a0	b70	c255	f%\011CharEditor.jar	g%\011CharEditor.zip	hManifest-Version\0111.0\011Main-Class\011CharEditor!225;g
 %\011dbData%sAbilityData.java
-%\011CharPanel.java
 %\011CharEditor.java
+%\011CharPanel.java
 %\011DnDTabbedPane.java
-%\011dbData%sCharacterData.java
 %\011AbilityPanel.java
+%\011dbData%sCharacterData.java
 %\011dbData%sUnitData.java
-%\011gson-2.2.2.jar
 %\011dbData%sEnemyData.java
+%\011gson-2.2.2.jar
 !198;f
 %	dbData%sAbilityData.java
-%	CharPanel.java
 %	CharEditor.java
+%	CharPanel.java
 %	DnDTabbedPane.java
-%	dbData%sCharacterData.java
 %	AbilityPanel.java
+%	dbData%sCharacterData.java
 %	dbData%sUnitData.java
-%	gson-2.2.2.jar
 %	dbData%sEnemyData.java
+%	gson-2.2.2.jar
