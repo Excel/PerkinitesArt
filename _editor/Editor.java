@@ -1531,7 +1531,7 @@
                }
                else if(p == Properties.CREATE){
                   index = teleports.size();
-                  _object = new Teleport(null, null, null);
+                  _object = new Teleport(null, null, new Point(-1, -1));
                   teleports.add((Teleport)_object);
                }
                ((Teleport)_object).setEntry(new Point(eX1, eY1));

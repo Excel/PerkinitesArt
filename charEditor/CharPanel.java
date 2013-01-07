@@ -54,17 +54,10 @@
          
          selectedCharIndex = index;
          UnitData cData;
-         switch(mode){
-            case "Character": 
-               cData = charData.get(selectedCharIndex);
-               break;
-            case "Enemy":
-               cData = enemyData.get(selectedCharIndex);
-               break;
-            default:
-               cData = enemyData.get(selectedCharIndex);
-               break;
-         }
+         if(mode.equals("Character"))
+            cData = charData.get(selectedCharIndex);
+         else
+            cData = enemyData.get(selectedCharIndex);
                 
       	//Fields and stuff are here.
       	
@@ -90,29 +83,28 @@
          editPanel.add(defenseField);
          editPanel.add(new JLabel("Speed:"));
          editPanel.add(speedField);
-         switch(mode){
-            case "Character": 
-               healthlevelField = new JTextField(((CharacterData)cData).levelBonuses.health+"",20);
-               attacklevelField = new JTextField(((CharacterData)cData).levelBonuses.attack+"",20);
-               speedlevelField = new JTextField(((CharacterData)cData).levelBonuses.speed+"",20);
-               weaponField = new JTextField(((CharacterData)cData).weapon,20);
+         if(mode.equals("Character")){ 
+            healthlevelField = new JTextField(((CharacterData)cData).levelBonuses.health+"",20);
+            attacklevelField = new JTextField(((CharacterData)cData).levelBonuses.attack+"",20);
+            speedlevelField = new JTextField(((CharacterData)cData).levelBonuses.speed+"",20);
+            weaponField = new JTextField(((CharacterData)cData).weapon,20);
                
-               editPanel.add(new JLabel("Health per Level:"));
-               editPanel.add(healthlevelField);
-               editPanel.add(new JLabel("Attack per Level:"));
-               editPanel.add(attacklevelField);
-               editPanel.add(new JLabel("Speed per Level:"));
-               editPanel.add(speedlevelField);
-               editPanel.add(new JLabel("Weapon:"));
-               editPanel.add(weaponField);
+            editPanel.add(new JLabel("Health per Level:"));
+            editPanel.add(healthlevelField);
+            editPanel.add(new JLabel("Attack per Level:"));
+            editPanel.add(attacklevelField);
+            editPanel.add(new JLabel("Speed per Level:"));
+            editPanel.add(speedlevelField);
+            editPanel.add(new JLabel("Weapon:"));
+            editPanel.add(weaponField);
             
-               break;
-            case "Enemy": 
-               aiField = new JTextField(((EnemyData)cData).ai,20);
-               editPanel.add(new JLabel("AI Mode:"));
-               editPanel.add(aiField);
-               break;
          }
+         else{
+            aiField = new JTextField(((EnemyData)cData).ai,20);
+            editPanel.add(new JLabel("AI Mode:"));
+            editPanel.add(aiField); 
+         }
+      
       
       
                
@@ -157,34 +149,26 @@
       
       public void updateCharacter(){
          UnitData cData;
-         switch(mode){
-            case "Character": 
-               cData = charData.get(selectedCharIndex);
-               if(healthlevelField.getText().matches("^\\d*$")){
-                  ((CharacterData)cData).levelBonuses.health = Integer.parseInt(healthlevelField.getText());
-               }
-               if(attacklevelField.getText().matches("^\\d*$")){
-                  ((CharacterData)cData).levelBonuses.attack = Integer.parseInt(attacklevelField.getText());
-               }
-               if(speedlevelField.getText().matches("^\\d*$")){
-                  ((CharacterData)cData).levelBonuses.speed = Integer.parseInt(speedlevelField.getText());
-               }
-               if(weaponField.getText().matches(".*\\w.*")){
-                  ((CharacterData)cData).weapon = weaponField.getText();
-               }
-               break;
-            case "Enemy":
-               cData = enemyData.get(selectedCharIndex);
-               if(aiField.getText().matches(".*\\w.*")){
-                  ((EnemyData)cData).ai = aiField.getText();
-               }
-               break;
-            default:
-               cData = enemyData.get(selectedCharIndex);
-               if(aiField.getText().matches(".*\\w.*")){
-                  ((EnemyData)cData).ai = aiField.getText();
-               }
-               break;
+         if(mode.equals("Character")){
+            cData = charData.get(selectedCharIndex);
+            if(healthlevelField.getText().matches("^\\d*$")){
+               ((CharacterData)cData).levelBonuses.health = Integer.parseInt(healthlevelField.getText());
+            }
+            if(attacklevelField.getText().matches("^\\d*$")){
+               ((CharacterData)cData).levelBonuses.attack = Integer.parseInt(attacklevelField.getText());
+            }
+            if(speedlevelField.getText().matches("^\\d*$")){
+               ((CharacterData)cData).levelBonuses.speed = Integer.parseInt(speedlevelField.getText());
+            }
+            if(weaponField.getText().matches(".*\\w.*")){
+               ((CharacterData)cData).weapon = weaponField.getText();
+            }
+         }
+         else{
+            cData = enemyData.get(selectedCharIndex);
+            if(aiField.getText().matches(".*\\w.*")){
+               ((EnemyData)cData).ai = aiField.getText();
+            }   
          }
          if(nameField.getText().matches(".*\\w.*")){ 
             cData.name = nameField.getText();

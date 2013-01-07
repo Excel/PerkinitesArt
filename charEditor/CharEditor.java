@@ -489,6 +489,8 @@
             obj.addProperty("dmgRatio", src.dmgRatio);
             obj.addProperty("range", src.range);
             obj.addProperty("cd", src.cd);
+            obj.addProperty("stand", src.stand);
+				//obj.addProperty("buffs", src.buffs);
             
             Set keyset = src.fields.get(src.type).keySet();
             Iterator it = keyset.iterator();
@@ -523,6 +525,15 @@
             
                
             }
+				
+				/*Gson gson = new Gson();			
+            String buffs = gson.toJson(src.buffs);
+				JsonParser parser = new JsonParser();
+				System.out.println(buffs);
+				if(buffs != null){
+					JsonObject json = (JsonObject)parser.parse(buffs);
+					//obj.add("buffs", json);
+				}*/
             return obj;
          }
       }  

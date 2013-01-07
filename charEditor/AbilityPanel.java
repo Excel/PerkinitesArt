@@ -107,7 +107,7 @@
    
    
       public static class EditAbilityPanel extends JPanel{
-         public JTextField nameField, iconField, dmgBaseField, dmgRatioField, rangeField, cdField;
+         public JTextField nameField, iconField, dmgBaseField, dmgRatioField, rangeField, cdField, stField;
          public JTextArea descriptionArea;
          public JComboBox typeBox;
          public JPanel addPanel;
@@ -145,6 +145,7 @@
             dmgRatioField = new JTextField(aData.dmgRatio, 4);
             rangeField = new JTextField(aData.range+"", 30);
             cdField = new JTextField(aData.cd+"", 30);
+            stField = new JTextField(aData.stand+"", 30);
              	
             add(faceIcon, BorderLayout.PAGE_START);
             editPanel.add(new JLabel("Name:"));
@@ -163,8 +164,8 @@
          
             editPanel.add(new JLabel("Range:"));
             editPanel.add(rangeField);
-            editPanel.add(new JLabel("Cooldown:"));
-            editPanel.add(cdField);
+            editPanel.add(new JLabel("Stand:"));
+            editPanel.add(stField);
          
          
             //addPanel = new JPanel();
@@ -264,7 +265,7 @@
                // }
             // 
             // }
-            try{
+            /*try{
                System.out.println("okay");
                Class c = aData.buffs.self.getClass();
                for(Field f : aData.buffs.self.getClass().getFields()) {
@@ -273,7 +274,7 @@
             }
                catch(Exception ce){
                
-               }
+               }*/
           
             int result = JOptionPane.showConfirmDialog(null, myPanel, 
                mode + " Buff Properties", JOptionPane.OK_CANCEL_OPTION);
@@ -320,6 +321,7 @@
             aData.dmgRatio = editPanel.dmgRatioField.getText();
             aData.range = Integer.parseInt(editPanel.rangeField.getText());
             aData.cd = Integer.parseInt(editPanel.cdField.getText());
+            aData.stand = Integer.parseInt(editPanel.stField.getText());
             ArrayList<String> attacks = new ArrayList<String>(aData.fields.keySet());
             aData.type = attacks.get(editPanel.typeBox.getSelectedIndex());
             

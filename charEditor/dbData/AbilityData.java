@@ -13,13 +13,15 @@
    
       public int range;
       public int cd;
+		public int stand;
    	
-      public String animLabel;
+      public String animLabel;	
       
       public static Map<String, Map<String, FieldTypes>> fields;
       public Map<String, String> actualFields = new HashMap<String, String>();
       
-      public AttackBuff buffs;
+   	
+      //public AttackBuff buffs = new AttackBuff();
    
    // fill dictionary with attack fields
    // attack type -> (field name, fieldType)
@@ -95,6 +97,10 @@
          public Buff team  = new Buff();
          public Buff allies  = new Buff();
          public Buff enemies = new Buff();
+      	
+         public AttackBuff(){
+         }
+      
       }
       public class Buff{
       
@@ -114,15 +120,16 @@
          public double rangeMult = 1;
          public int rangeAdd = 0;
          
-         public double movementMult = 1;
-         public int movementAdd = 0;
+         public double moveMult = 1;
+         public int moveAdd = 0;
       	
          public double cooldownMult = 1;
          public int cooldownAdd = 0;
          
          public double poisonMult = 1;
          public int poisonAdd = 0;
-         
+        
+         public boolean aura = false;
          public int auraRange = 0;
          public double auraMult = 0;
       
@@ -131,12 +138,12 @@
          public boolean vanish = false;
          public boolean invincibility = false;
          
-         public boolean snare = false;
-         public boolean silence = false;
-         public boolean charm = false;
-         public boolean fear = false;
-         public boolean enrage = false;
-         public boolean hex = false;  
+      //          public boolean snare = false;
+      //          public boolean silence = false;
+      //          public boolean charm = false;
+      //          public boolean fear = false;
+      //          public boolean enrage = false;
+      //          public boolean hex = false;  
          
          public int duration = 0;
          
