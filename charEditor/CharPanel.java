@@ -54,11 +54,11 @@
          
          selectedCharIndex = index;
          UnitData cData;
+      	
          if(mode.equals("Character"))
             cData = charData.get(selectedCharIndex);
          else
-            cData = enemyData.get(selectedCharIndex);
-                
+            cData = enemyData.get(selectedCharIndex);      
       	//Fields and stuff are here.
       	
          JLabel faceIcon = new JLabel(createFaceIcon(cData.id));

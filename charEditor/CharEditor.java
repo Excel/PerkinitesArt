@@ -256,6 +256,9 @@
                      menuItem = new JMenuItem("Create New Entry");
                      menuItem.addActionListener(new CreateNewListener());
                      rcMenu.add(menuItem);
+                     menuItem = new JMenuItem("Delete Entry");
+                     menuItem.addActionListener(new DeleteListener(index));
+                     rcMenu.add(menuItem);
                   	
                   
                      rcMenu.show(e.getComponent(),e.getX(), e.getY());
@@ -355,16 +358,17 @@
                }
                
                ArrayList<String> temp = new ArrayList<String>();
-               temp.add(idField.getText());
                UnitData cData = new UnitData();
                if (mode == "Character") {
                   temp = new ArrayList<String>(Arrays.asList(charIDs));
+                  temp.add(idField.getText());
                   charIDs = temp.toArray(new String[temp.size()]);
                   cData = new CharacterData();
                }
                else if (mode == "Enemy") {
                   temp = new ArrayList<String>(Arrays.asList(enemyIDs));
-                  charIDs = temp.toArray(new String[temp.size()]);
+                  temp.add(idField.getText());
+                  enemyIDs = temp.toArray(new String[temp.size()]);
                   cData = new EnemyData();
                }  
             	
@@ -390,6 +394,7 @@
                makeListPanel(temp.size()-1);
                charPanel.updateCharacter();
                abilityPanel.updateAbilities();
+               System.out.println(charData.size() + " " + temp.size());
                charPanel.updateCharPanel(temp.size()-1, mode); 
                if (mode == "Character") {
                   abilityPanel.updateAbilityPanel(charData.get(temp.size()-1));
@@ -403,7 +408,63 @@
          
          }
       }
-   
+      public static class DeleteListener implements ActionListener{
+         private int _index;
+      
+         public DeleteListener(int index){
+            _index = index;
+         }
+      	
+         public void actionPerformed(ActionEvent e){
+            JPanel myPanel = new JPanel();
+            if(mode == "Character"){
+               myPanel.add(new JLabel("You sure you wanna delete " +charIDs[_index]+"?"));
+            }
+            else if(mode == "Enemy"){
+               myPanel.add(new JLabel("You sure you wanna delete " +enemyIDs[_index]+"?"));
+            }
+            int result = JOptionPane.showConfirmDialog(null, myPanel, 
+               "Warning Popup!", JOptionPane.OK_CANCEL_OPTION);
+            if (result == JOptionPane.OK_OPTION) { 
+               if(mode == "Character"){
+                  charData.remove(_index);
+               }
+               else if(mode == "Enemy"){
+                  enemyData.remove(_index);
+               }
+            }       
+            
+         	
+            ArrayList<String> temp = new ArrayList<String>();
+            if (mode == "Character") {
+               temp = new ArrayList<String>(Arrays.asList(charIDs));
+               temp.remove(_index);
+               charIDs = temp.toArray(new String[temp.size()]);
+            }
+            else if (mode == "Enemy") {
+               temp = new ArrayList<String>(Arrays.asList(enemyIDs));      
+               temp.remove(_index);
+               enemyIDs = temp.toArray(new String[temp.size()]);
+            }  
+            
+            int index = _index;	
+            if(_index >= temp.size()){
+               index--;
+            }
+            makeListPanel(index);
+            charPanel.updateCharacter();
+            abilityPanel.updateAbilities();
+            charPanel.updateCharPanel(index, mode); 
+            if (mode == "Character") {
+               abilityPanel.updateAbilityPanel(charData.get(index));
+            }
+            else if (mode == "Enemy") {
+               abilityPanel.updateAbilityPanel(enemyData.get(index));
+            }
+              
+               
+         }
+      }
                 	
       public static void save() throws Exception {
          charPanel.updateCharacter();
@@ -490,7 +551,7 @@
             obj.addProperty("range", src.range);
             obj.addProperty("cd", src.cd);
             obj.addProperty("stand", src.stand);
-				//obj.addProperty("buffs", src.buffs);
+         	//obj.addProperty("buffs", src.buffs);
             
             Set keyset = src.fields.get(src.type).keySet();
             Iterator it = keyset.iterator();
@@ -525,15 +586,15 @@
             
                
             }
-				
-				/*Gson gson = new Gson();			
+         	
+         	/*Gson gson = new Gson();			
             String buffs = gson.toJson(src.buffs);
-				JsonParser parser = new JsonParser();
-				System.out.println(buffs);
-				if(buffs != null){
-					JsonObject json = (JsonObject)parser.parse(buffs);
-					//obj.add("buffs", json);
-				}*/
+         	JsonParser parser = new JsonParser();
+         	System.out.println(buffs);
+         	if(buffs != null){
+         		JsonObject json = (JsonObject)parser.parse(buffs);
+         		//obj.add("buffs", json);
+         	}*/
             return obj;
          }
       }  

@@ -9,6 +9,11 @@
       public String weapon;
       
       public CharacterData() {
+		
+			levelBonuses = new LevelBonus();
+			levelBonuses.health = 0;
+			levelBonuses.attack = 0;
+			levelBonuses.speed = 0;
       
       }
       

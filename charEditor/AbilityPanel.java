@@ -111,11 +111,11 @@
          public JTextArea descriptionArea;
          public JComboBox typeBox;
          public JPanel addPanel;
-         public JButton selfbuffButton = new JButton("Self Buff");
+         /*public JButton selfbuffButton = new JButton("Self Buff");
          public JButton teambuffButton = new JButton("Team Buff");
          public JButton alliesbuffButton = new JButton("Allies Buff");
          public JButton enemiesbuffButton = new JButton("Enemies Buff");
-         
+         */
          public ArrayList<JLabel> addLabels = new ArrayList<JLabel>();
          public ArrayList<JTextField> addFields = new ArrayList<JTextField>();
          
@@ -208,12 +208,12 @@
                editPanel.remove(addFields.get(i));
             
             }
-            if(addFields.size() != 0){
+            /*if(addFields.size() != 0){
                editPanel.remove(selfbuffButton);
                editPanel.remove(teambuffButton);
                editPanel.remove(alliesbuffButton);
                editPanel.remove(enemiesbuffButton);
-            }
+            }*/
             addLabels = new ArrayList<JLabel>();
             addFields = new ArrayList<JTextField>();
             
@@ -230,7 +230,7 @@
                addFields.add(field);
                editPanel.add(field);
             }
-            selfbuffButton.addActionListener(new BuffListener("Self", aData));
+            /*selfbuffButton.addActionListener(new BuffListener("Self", aData));
             teambuffButton.addActionListener(new BuffListener("Team", aData));
             alliesbuffButton.addActionListener(new BuffListener("Allies", aData));
             enemiesbuffButton.addActionListener(new BuffListener("Enemies", aData));
@@ -238,7 +238,7 @@
             editPanel.add(selfbuffButton);
             editPanel.add(teambuffButton);
             editPanel.add(alliesbuffButton);
-            editPanel.add(enemiesbuffButton);
+            editPanel.add(enemiesbuffButton);*/
             revalidate();
             repaint();
          }
