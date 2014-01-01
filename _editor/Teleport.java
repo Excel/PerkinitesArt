@@ -4,7 +4,7 @@
    
    
    public class Teleport implements Cloneable{
-      public ArrayList<Condition> conditions;
+      public ArrayList<Object> conditions;
       private Point entry;
       //private String map;
       public Exit exit;
@@ -14,7 +14,7 @@
          exit.map = m;
          exit.x = ex.x;
          exit.y = ex.y;
-         conditions = new ArrayList<Condition>();
+         conditions = new ArrayList<Object>();
       }
       public Point getEntry(){
          return entry;
@@ -41,16 +41,14 @@
       
          result.exit = (Exit)exit.clone();
          if(conditions == null){
-            conditions = new ArrayList<Condition>();
+            conditions = new ArrayList<Object>();
          }
-         ArrayList<Condition> newConditions = new ArrayList<Condition>();
+         ArrayList<Object> newConditions = new ArrayList<Object>();
          
-         for(int i = 0; i < conditions.size(); i++){
-            Condition c = new Condition();
-            c.type = ""+conditions.get(i).type;
-            c.name = ""+conditions.get(i).name;
+        /* for(int i = 0; i < conditions.size(); i++){
+            Object c = conditions.get(i).clone();
             newConditions.add(c);
-         }   
+         }*/   
          
          result.conditions = newConditions;
       
@@ -71,20 +69,5 @@
             return result;
          }
       	
-      }
-      public static class Condition implements Cloneable{
-         public String type;
-         public String name;
-      	
-         public Condition(){
-         }
-         
-         @Override public Object clone() throws CloneNotSupportedException {
-         //get initial bit-by-bit copy, which handles all immutable fields
-            Condition result = (Condition)super.clone();
-                  
-            return result;
-         }
-      
       }
    }

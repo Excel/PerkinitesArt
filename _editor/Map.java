@@ -19,6 +19,8 @@
 		
 		private ArrayList<String> sequences;
       
+      private ArrayList<Object> objects;
+      
       private int[][] mapMatrix;
       
       private String BGS;

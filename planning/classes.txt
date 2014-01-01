@@ -1,0 +1,31 @@
+Perkinites Classes:
+
+Biology
+20 - Intro
+28 - Biochem
+47 - Genetics
+
+Chemistry
+10 - Something
+33 - Honors
+36 - Orgo
+
+Computer Science
+15 - Intro
+17 - Intermediate
+19 - Advanced
+
+English
+11 - Critical
+13 - Critical part 2
+XX - I dunno
+
+Math
+9/10 - Intro Calc
+17/18 - AP Calc
+19 - Physics Calc
+
+Visual Arts
+10 - Studio Foundation
+131 - Painting
+152 - Photography

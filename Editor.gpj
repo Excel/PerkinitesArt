@@ -1,11 +1,12 @@
-!672;s
+!1015;s
 J
-SAU0PATH+=%<JGRASP_PATHS>%;
-SCU0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
-S+U0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
+SAU0PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning
+SCU0PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning
+S+U0PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning
 SJc1-source 1.6
-SJU0CLASSPATH=+%;%<EXTENSION_CLASSPATHS>\012CLASSPATH+=%<JGRASP_CLASSPATHS>%;\012CLASSPATH+=.%;\012PATH+=%<JAVA_BIN_DIR>%;\012PATH+=%<JGRASP_PATHS>%;\012Compile\012NOT_FOUND_MESSAGE==Make sure you have the full JDK, not just the JRE, installed.\\nThe JDK is available from http://www.oracle.com/technetwork/java/index.html.\012Run_Applet +Debug_Applet\012ADD_APPLETVIEWER_CLASSPATH==Y\012Document\012CLASSPATH=+%;%<TOOL_CLASSPATHS>\012
-SOU0PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
+SJU0CLASSPATH=+%;%<EXTENSION_CLASSPATHS>\012CLASSPATH+=%<JGRASP_CLASSPATHS>%;\012File\012CLASSPATH+=.%;\012ProjectOrFile\012PATH+=%<JAVA_BIN_DIR>%;\012PATH+=%<JGRASP_PATHS>%;\012Debug +Debug_Applet\012CLASSPATH=+%;%<INJECTION_CLASSPATHS>\012Compile\012NOT_FOUND_MESSAGE==Make sure you have the full JDK, not just the JRE, installed.\\nThe JDK is available from http://www.oracle.com/technetwork/java/index.html.\012Run_Applet +Debug_Applet\012ADD_APPLETVIEWER_CLASSPATH==Y\012Document\012CLASSPATH=+%;%<TOOL_CLASSPATHS>\012CLASSPATH+=%<CLASSES_DIR>%;\012
+SOU0PATH+=%<JGRASP_PATHS>%;\012PATH=+%;%<JGRASP_C_PATHS>\012CYGWIN=nodosfilewarning
+SyU0PATH+=%<PYTHON_PATH>%;\012PATH+=%<JGRASP_PATHS>%;\012CYGWIN=nodosfilewarning
 SPU0
 s#i0
 s#k0
@@ -28,17 +29,17 @@ a%\011Editor_doc	b	c1	d0!358;g
 %\011_editor%sMapChange.java
 %\011_editor%sMap.java
 %\011_editor%sNPC.java
-!319;f
-%	_editor%sMapJSONWriter.java
-%	_editor%sChange.java
-%	gson-2.2.2.jar
-%	_editor%sTeleport.java
-%	_editor%sNPCAction.java
-%	_editor%sEditor.java
-%	_editor%sMapJSONReader.java
-%	_editor%sCompoundIcon.java
-%	_editor%sEnemy.java
-%	_editor%sNPCSequence.java
-%	_editor%sMapChange.java
-%	_editor%sMap.java
-%	_editor%sNPC.java
+!358;f
+%\011_editor%sMapJSONWriter.java
+%\011_editor%sChange.java
+%\011gson-2.2.2.jar
+%\011_editor%sTeleport.java
+%\011_editor%sNPCAction.java
+%\011_editor%sEditor.java
+%\011_editor%sMapJSONReader.java
+%\011_editor%sCompoundIcon.java
+%\011_editor%sEnemy.java
+%\011_editor%sNPCSequence.java
+%\011_editor%sMapChange.java
+%\011_editor%sMap.java
+%\011_editor%sNPC.java

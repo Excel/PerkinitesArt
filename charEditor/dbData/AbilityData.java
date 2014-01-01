@@ -14,6 +14,8 @@
       public int range;
       public int cd;
 		public int stand;
+      
+      public AttackBuff buffs = new AttackBuff();;
    	
       public String animLabel;	
       
@@ -37,6 +39,10 @@
          f = new HashMap<String, FieldTypes>();
          f.put("goToCastPoint", FieldTypes.BOOLEAN);
          fields.put("AttackSmartcast", f);
+         
+         f = new HashMap<String, FieldTypes>();
+         f.put("goToCastPoint", FieldTypes.BOOLEAN);
+         fields.put("AttackConsumeSmartcast", f);
       
          f = new HashMap<String, FieldTypes>();
          f.put("radius", FieldTypes.INT);
@@ -63,6 +69,10 @@
          f.put("expires", FieldTypes.INT);
          f.put("quantity", FieldTypes.INT);
          fields.put("AttackHomingProjectiles", f);
+         
+         f = new HashMap<String, FieldTypes>();
+         f.put("width", FieldTypes.INT);
+         fields.put("AttackLaser", f);
       
       }
       public void fillInActualFields(){
@@ -93,10 +103,10 @@
          INT, NUMBER, BOOLEAN, STRING;
       }
       public class AttackBuff{
-         public Buff self = new Buff();
-         public Buff team  = new Buff();
-         public Buff allies  = new Buff();
-         public Buff enemies = new Buff();
+         public ArrayList<Buff> self = new ArrayList<Buff>();
+         public ArrayList<Buff> team  = new ArrayList<Buff>();
+         public ArrayList<Buff> allies   = new ArrayList<Buff>();
+         public ArrayList<Buff> enemies  = new ArrayList<Buff>();
       	
          public AttackBuff(){
          }
@@ -108,36 +118,10 @@
             // "Movement", "Cooldown", "Poison", "Aura"};
          // public static String[] changeTypes = {"Add", "Mult"}; 
          
-         public int healAdd = 0;
-         public double healMissingMult = 0;
-         
-         public double attackMult = 1;
-         public int attackAdd = 1;
-         
-         public double defenseMult = 1;
-         public int defenseAdd = 0;
-      
-         public double rangeMult = 1;
-         public int rangeAdd = 0;
-         
-         public double moveMult = 1;
-         public int moveAdd = 0;
-      	
-         public double cooldownMult = 1;
-         public int cooldownAdd = 0;
-         
-         public double poisonMult = 1;
-         public int poisonAdd = 0;
-        
-         public boolean aura = false;
-         public int auraRange = 0;
-         public double auraMult = 0;
-      
-         public boolean stun = false;
-         public boolean detect = false;
-         public boolean vanish = false;
-         public boolean invincibility = false;
-         
+        public String type = "";
+        public int base;
+        public double mod;
+        public double ratio;         
       //          public boolean snare = false;
       //          public boolean silence = false;
       //          public boolean charm = false;
